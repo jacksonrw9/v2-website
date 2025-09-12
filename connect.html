@@ -29,9 +29,9 @@
             color: #333;
         }
 
-        /* Navigation Styles */
+        /* Navigation */
         nav {
-            background: #64748b;
+            background: #30444D;
             padding: 1rem 0;
             position: relative;
             z-index: 100;
@@ -54,33 +54,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .logo-dots {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            align-items: center;
-        }
-
-        .dot {
-            background: #ffffff;
-            border-radius: 50%;
-        }
-
-        .dot:nth-child(1) {
-            width: 4px;
-            height: 4px;
-        }
-
-        .dot:nth-child(2) {
-            width: 6px;
-            height: 6px;
-        }
-
-        .dot:nth-child(3) {
-            width: 8px;
-            height: 8px;
         }
 
         .nav-links {
@@ -155,6 +128,17 @@
             border-left-color: #4a90b8;
         }
 
+        .dropdown-header {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
         .request-demo {
             background: #d97706 !important;
             color: white !important;
@@ -165,7 +149,6 @@
             letter-spacing: 0.5px;
             font-weight: 600 !important;
             font-size: 0.8rem !important;
-            min-height: 44px;
         }
 
         .request-demo:hover {
@@ -276,7 +259,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: background-color 0.3s ease;
-            min-height: 44px;
         }
 
         .mobile-nav-links > li > a:hover {
@@ -308,7 +290,6 @@
             letter-spacing: 0;
             font-size: 0.9rem;
             transition: background-color 0.3s ease;
-            min-height: 44px;
         }
 
         .mobile-menu .mobile-dropdown a:hover {
@@ -328,7 +309,6 @@
             font-size: 0.9rem !important;
             transition: background 0.3s ease !important;
             text-decoration: none !important;
-            min-height: 44px;
         }
 
         .mobile-request-demo:hover {
@@ -614,28 +594,6 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-brand .logo-dots {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .footer-brand .dot:nth-child(1) {
-            width: 4px;
-            height: 4px;
-        }
-
-        .footer-brand .dot:nth-child(2) {
-            width: 6px;
-            height: 6px;
-        }
-
-        .footer-brand .dot:nth-child(3) {
-            width: 8px;
-            height: 8px;
         }
 
         .footer-brand p {
@@ -1037,12 +995,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-dots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                Phizzle
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 32px; width: auto; display: block;">
             </a>
 
             <!-- Desktop Navigation -->
@@ -1285,14 +1238,9 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>
-                        <div class="logo-dots">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
-                        Phizzle
+                        <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 28px; width: auto;">
                     </h3>
-                    <p>Welcome to The Intersection of Science and IT</p>
+                    <p>Welcome to the Intersection of <br>Science and IT</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/phizzle/posts/?feedView=all" class="social-link linkedin">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
