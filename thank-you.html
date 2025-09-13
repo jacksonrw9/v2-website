@@ -32,7 +32,7 @@
 
         /* Navigation */
         nav {
-            background: #64748b;
+            background: #30444D;
             padding: 1rem 0;
             position: relative;
             z-index: 100;
@@ -56,22 +56,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-
-        .logo-dots {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            align-items: center;
-        }
-
-        .dot {
-            background: #ffffff;
-            border-radius: 50%;
-        }
-
-        .dot:nth-child(1) { width: 4px; height: 4px; }
-        .dot:nth-child(2) { width: 6px; height: 6px; }
-        .dot:nth-child(3) { width: 8px; height: 8px; }
 
         .nav-links {
             display: flex;
@@ -456,28 +440,6 @@
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-brand .logo-dots {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .footer-brand .dot:nth-child(1) {
-            width: 4px;
-            height: 4px;
-        }
-
-        .footer-brand .dot:nth-child(2) {
-            width: 6px;
-            height: 6px;
-        }
-
-        .footer-brand .dot:nth-child(3) {
-            width: 8px;
-            height: 8px;
         }
 
         .footer-brand p {
@@ -679,23 +641,8 @@
             }
 
             /* Smaller logo on tablet */
-            .logo {
-                font-size: 1.6rem;
-            }
-
-            .logo-dots .dot:nth-child(1) {
-                width: 3px;
-                height: 3px;
-            }
-
-            .logo-dots .dot:nth-child(2) {
-                width: 5px;
-                height: 5px;
-            }
-
-            .logo-dots .dot:nth-child(3) {
-                width: 7px;
-                height: 7px;
+            .logo img {
+                height: 28px;
             }
 
             /* Footer adjustments */
@@ -717,8 +664,8 @@
         /* Mobile Responsive Design (768px and below) */
         @media (max-width: 768px) {
             /* Even smaller logo on mobile */
-            .logo {
-                font-size: 1.4rem;
+            .logo img {
+                height: 24px;
             }
 
             .thank-you-section {
@@ -778,12 +725,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <div class="logo-dots">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
-                Phizzle
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 32px; width: auto; display: block;">
             </a>
 
             <!-- Desktop Navigation -->
@@ -809,7 +751,7 @@
                 <li>
                     <a href="#">Applications ▼</a>
                     <ul class="dropdown">
-                        <li><a href="biopharma-manufacturing.html">Biopharma Manufacturing</a></li>
+                        <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
                     </ul>
@@ -885,7 +827,7 @@
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <ul class="mobile-dropdown" id="applications-dropdown">
-                        <li><a href="biopharma-manufacturing.html">Biopharma Manufacturing</a></li>
+                        <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
                     </ul>
@@ -961,12 +903,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>
-                        <div class="logo-dots">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
-                        Phizzle
+                        <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 28px; width: auto;">
                     </h3>
                     <p>Welcome to The Intersection of Science and IT</p>
                     <div class="social-links">
