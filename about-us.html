@@ -1312,7 +1312,8 @@
                     <div class="email-signup">
                         <h5>Stay Updated</h5>
                         <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
-                        <div class="email-form" id="hubspot-form-container"></div>
+                        <script src="https://js-na2.hsforms.net/forms/embed/8070371.js" defer></script>
+                        <div class="hs-form-frame" data-region="na2" data-form-id="5efde115-8a41-4e38-8176-4b121279ff42" data-portal-id="8070371"></div>
                     </div>
                 </div>
             </div>
@@ -1374,59 +1375,6 @@
                 closeMobileMenu();
             }
         });
-
-        // HubSpot Form Integration - Proper Method
-        // Load HubSpot forms script if not already loaded
-        if (typeof hbspt === 'undefined') {
-            const script = document.createElement('script');
-            script.src = 'https://js.hsforms.net/forms/embed/v2.js';
-            script.onload = function() {
-                createHubSpotForm();
-            };
-            document.head.appendChild(script);
-        } else {
-            createHubSpotForm();
-        }
-
-        function createHubSpotForm() {
-            hbspt.forms.create({
-                region: "na2",
-                portalId: "8070371",
-                formId: "5efde115-8a41-4e38-8176-4b121279ff42",
-                target: '#hubspot-form-container',
-                css: '',
-                onFormReady: function($form) {
-                    // Style the form to match your design
-                    const emailInput = $form.find('input[type="email"]');
-                    const submitBtn = $form.find('input[type="submit"]');
-                    
-                    // Apply your custom classes
-                    emailInput.addClass('email-input').attr('placeholder', 'Enter your email');
-                    submitBtn.addClass('email-submit').val('Subscribe');
-                    
-                    // Remove HubSpot's default styles
-                    $form.find('.hs-form-field').css({
-                        'margin-bottom': '0.5rem'
-                    });
-                    $form.find('.hs-form').css({
-                        'display': 'flex',
-                        'flex-direction': 'column',
-                        'gap': '0.5rem'
-                    });
-                },
-                onFormSubmit: function($form) {
-                    const submitBtn = $form.find('input[type="submit"]');
-                    submitBtn.val('Subscribing...');
-                },
-                onFormSubmitted: function($form) {
-                    const submitBtn = $form.find('input[type="submit"]');
-                    submitBtn.val('Subscribed!');
-                    setTimeout(() => {
-                        submitBtn.val('Subscribe');
-                    }, 2000);
-                }
-            });
-        }
     </script>
 </body>
 </html>
