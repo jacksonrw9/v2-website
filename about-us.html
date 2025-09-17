@@ -765,6 +765,69 @@
             color: #94a3b8;
         }
 
+        /* Thank You Modal Styles */
+        .thank-you-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .thank-you-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .thank-you-modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-content h3 {
+            color: #4a90b8;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #64748b;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: #4a90b8;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #3a7ba8;
+        }
+
         /* Mobile/Tablet Responsive Design */
         @media (max-width: 1350px) {
             /* Show hamburger menu, hide desktop nav */
@@ -1328,6 +1391,15 @@
         </div>
     </footer>
 
+    <!-- Thank You Modal -->
+    <div class="thank-you-modal" id="thankYouModal">
+        <div class="modal-content">
+            <h3>Thank You!</h3>
+            <p>Thanks for subscribing to our newsletter. We'll keep you updated on the latest innovations in manufacturing automation.</p>
+            <button class="modal-close" onclick="closeThankYouModal()">Continue</button>
+        </div>
+    </div>
+
     <script>
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1373,6 +1445,39 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeMobileMenu();
+                closeThankYouModal();
+            }
+        });
+
+        // Thank You Modal Functions
+        function showThankYouModal() {
+            const modal = document.getElementById('thankYouModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeThankYouModal() {
+            const modal = document.getElementById('thankYouModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal when clicking background
+        document.getElementById('thankYouModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeThankYouModal();
+            }
+        });
+
+        // HubSpot Form Success Detection
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'hsFormCallback') {
+                if (event.data.eventName === 'onFormSubmitted') {
+                    // Show thank you modal instead of redirecting
+                    setTimeout(function() {
+                        showThankYouModal();
+                    }, 100);
+                }
             }
         });
     </script>
