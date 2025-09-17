@@ -996,6 +996,1077 @@
                     <div class="email-signup">
                         <h5>Stay Updated</h5>
                         <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
+                        <form class="email-form" id="newsletter-form">
+                            <input type="email" class="email-input" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="email-submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Phizzle. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        function toggleMobileDropdown(event, dropdownId) {
+            event.preventDefault();
+            const dropdown = document.getElementById(dropdownId);
+            const arrow = event.target.querySelector('.dropdown-arrow');
+            
+            // Close all other dropdowns
+            const allDropdowns = document.querySelectorAll('.mobile-dropdown');
+            const allArrows = document.querySelectorAll('.dropdown-arrow');
+            
+            allDropdowns.forEach(dd => {
+                if (dd.id !== dropdownId) {
+                    dd.classList.remove('active');
+                }
+            });
+            
+            allArrows.forEach(arr => {
+                if (arr !== arrow) {
+                    arr.classList.remove('rotated');
+                }
+            });
+            
+            // Toggle current dropdown
+            dropdown.classList.toggle('active');
+            arrow.classList.toggle('rotated');
+        }
+
+        // Close mobile menu when pressing escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
+        // HubSpot Form Integration
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = e.target.querySelector('input[name="email"]').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Disable button during submission
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
+            
+            // Submit to HubSpot
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fields: [
+                        {
+                            name: "email",
+                            value: email
+                        }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.textContent = 'Subscribed!';
+                e.target.reset();
+                setTimeout(() => {
+                    submitBtn.textContent = 'Subscribe';
+                    submitBtn.disabled = false;
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitBtn.textContent = 'Error - Try Again';
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            background: #30444D;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links > li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links > li > a:hover {
+            color: #94a3b8;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 1rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .nav-links > li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown a {
+            color: #374151;
+            padding: 0.75rem 1.5rem;
+            text-transform: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0;
+            transition: background-color 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown a:hover {
+            background-color: #f8fafc;
+            color: #4a90b8;
+            border-left-color: #4a90b8;
+        }
+
+        .dropdown-header {
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 0.5rem;
+        }
+
+        .request-demo {
+            background: #d97706 !important;
+            color: white !important;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px !important;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600 !important;
+            font-size: 0.8rem !important;
+        }
+
+        .request-demo:hover {
+            background: #b45309 !important;
+            color: white !important;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -50vw;
+            width: 50vw;
+            height: 100vh;
+            background: #f3f4f6;
+            padding: 0;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #d1d5db;
+            background: #ffffff;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: #374151;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+            line-height: 1;
+        }
+
+        .mobile-menu-close:hover {
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            padding: 1rem 0 0 0;
+            margin: 0;
+        }
+
+        .mobile-nav-links > li {
+            border-bottom: 1px solid #d1d5db;
+        }
+
+        .mobile-nav-links > li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-nav-links > li > a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #374151;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-nav-links > li > a:hover {
+            background-color: #e5e7eb;
+        }
+
+        .mobile-menu .mobile-dropdown {
+            background: #f3f4f6 !important;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu .mobile-dropdown.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu .mobile-dropdown li {
+            list-style: none;
+        }
+
+        .mobile-menu .mobile-dropdown a {
+            display: block;
+            color: #374151 !important;
+            text-decoration: none;
+            padding: 0.75rem 3rem;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-menu .mobile-dropdown a:hover {
+            background-color: #e5e7eb !important;
+        }
+
+        .mobile-request-demo {
+            display: block;
+            background: #d97706 !important;
+            color: white !important;
+            padding: 0.75rem 1rem !important;
+            border-radius: 6px !important;
+            text-align: center !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+            font-weight: 600 !important;
+            font-size: 0.9rem !important;
+            transition: background 0.3s ease !important;
+            text-decoration: none !important;
+        }
+
+        .mobile-request-demo:hover {
+            background: #b45309 !important;
+        }
+
+        .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .thank-you-container {
+            background: #ffffff;
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .checkmark {
+            width: 40px;
+            height: 40px;
+            color: #ffffff;
+        }
+
+        .thank-you-container h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-container h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #4a90b8;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you-container p {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #d97706;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b45309;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4a90b8;
+            border-color: #4a90b8;
+        }
+
+        .btn-secondary:hover {
+            background: #4a90b8;
+            color: white;
+        }
+
+        /* Footer Section */
+        .footer {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 2fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            min-height: 44px;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+
+        .footer-section ul li a:hover {
+            color: #ffffff;
+        }
+
+        .email-signup {
+            margin-top: 0;
+        }
+
+        .email-signup h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            flex-direction: column;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            background: #334155;
+            color: #ffffff;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+            margin-bottom: 0.5rem;
+            min-height: 44px;
+        }
+
+        .email-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #4a90b8;
+        }
+
+        .email-submit {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            background: #4a90b8;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+            min-height: 44px;
+        }
+
+        .email-submit:hover {
+            background: #3a7ba8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border: 2px solid #64748b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .social-link.linkedin {
+            border-color: #0077b5;
+            color: #0077b5;
+        }
+
+        .social-link.linkedin:hover {
+            background: #0077b5;
+            color: #ffffff;
+        }
+
+        .social-link.facebook {
+            border-color: #1877f2;
+            color: #1877f2;
+        }
+
+        .social-link.facebook:hover {
+            background: #1877f2;
+            color: #ffffff;
+        }
+
+        .social-link.youtube {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        .social-link.youtube:hover {
+            background: #ff0000;
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            min-height: 44px;
+            display: inline-block;
+            padding: 0.25rem 0;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #94a3b8;
+        }
+
+        /* Mobile/Tablet Responsive Design */
+        @media (max-width: 1350px) {
+            /* Show hamburger menu, hide desktop nav */
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            /* Smaller logo on tablet */
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .logo-dots .dot:nth-child(1) {
+                width: 3px;
+                height: 3px;
+            }
+
+            .logo-dots .dot:nth-child(2) {
+                width: 5px;
+                height: 5px;
+            }
+
+            .logo-dots .dot:nth-child(3) {
+                width: 7px;
+                height: 7px;
+            }
+
+            /* Footer adjustments */
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+
+            .email-signup {
+                grid-column: 1 / -1;
+                margin-top: 2rem;
+            }
+        }
+
+        /* Mobile Responsive Design (768px and below) */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .thank-you-container {
+                padding: 3rem 2rem;
+                margin: 0 1rem;
+            }
+
+            .thank-you-container h1 {
+                font-size: 2rem;
+            }
+
+            .thank-you-container h2 {
+                font-size: 1.2rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            /* Footer mobile */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-bottom-links {
+                gap: 1rem;
+            }
+
+            /* Social links mobile sizing */
+            .social-link {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Very small mobile (480px and below) */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .thank-you-container h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 32px; width: auto; display: block;">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <ul class="nav-links">
+                <li>
+                    <a href="platform-overview.html">Platform ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="platform-overview.html">Platform Overview</a></li>
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="automate.html">Automate</a></li>
+                        <li><a href="integrate.html">Integrate</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="connected-plant.html">Solutions ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="connected-plant.html">Connected Plant</a></li>
+                        <li><a href="edge-puck.html">Edge Puck</a></li>
+                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
+                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Applications ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
+                        <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
+                        <li><a href="food-production.html">Food Production</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="connected-plant-sandbox.html">Resources ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="videos.html">Videos</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                        <li><a href="apc-case-study.html">Case Study</a></li>
+                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="partners.html">Partners ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="partners.html">Partners</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Company ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="request-demo.html" class="request-demo">Request a Demo</a></li>
+            </ul>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="closeMobileMenu()"></div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <button class="mobile-menu-close" onclick="closeMobileMenu()">×</button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'platform-dropdown')">
+                        Platform 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="platform-dropdown">
+                        <li><a href="platform-overview.html">Platform Overview</a></li>
+                        <li><a href="connect.html">Connect</a></li>
+                        <li><a href="automate.html">Automate</a></li>
+                        <li><a href="integrate.html">Integrate</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'solutions-dropdown')">
+                        Solutions 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="solutions-dropdown">
+                        <li><a href="connected-plant.html">Connected Plant</a></li>
+                        <li><a href="edge-puck.html">Edge Puck</a></li>
+                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
+                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'applications-dropdown')">
+                        Applications 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="applications-dropdown">
+                        <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
+                        <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
+                        <li><a href="food-production.html">Food Production</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'resources-dropdown')">
+                        Resources 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="resources-dropdown">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="videos.html">Videos</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                        <li><a href="apc-case-study.html">Case Study</a></li>
+                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'partners-dropdown')">
+                        Partners 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="partners-dropdown">
+                        <li><a href="partners.html">Partners</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleMobileDropdown(event, 'company-dropdown')">
+                        Company 
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="mobile-dropdown" id="company-dropdown">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div style="padding: 1rem 2rem; border-top: 1px solid #d1d5db;">
+                <a href="request-demo.html" class="mobile-request-demo">Request a Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="thank-you-container">
+            <div class="success-icon">
+                <svg class="checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M20 6L9 17l-5-5"/>
+                </svg>
+            </div>
+            
+            <h1>Thank You!</h1>
+            <h2>Your Request Has Been Received</h2>
+            <p>A detailed product brochure will be sent to your inbox shortly. Our team will also follow up with you to discuss how the Edge Puck can benefit your cleanroom operations.</p>
+            
+            <div class="action-buttons">
+                <a href="edge-puck.html" class="btn btn-secondary">Back to Edge Puck</a>
+                <a href="index.html" class="btn btn-primary">Return Home</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>
+                        <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 28px; width: auto;">
+                    </h3>
+                    <p>Welcome to the Intersection of <br>Science and IT</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/phizzle/posts/?feedView=all" class="social-link linkedin">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/phizzleinc/" class="social-link facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@Phizzle" class="social-link youtube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="connected-plant.html">Connected Plant</a></li>
+                        <li><a href="edge-puck.html">Edge Puck</a></li>
+                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
+                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="videos.html">Videos</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                        <li><a href="apc-case-study.html">Case Study</a></li>
+                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <div class="email-signup">
+                        <h5>Stay Updated</h5>
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
                         <form class="email-form" name="newsletter" method="POST" data-netlify="true">
                             <input type="hidden" name="form-name" value="newsletter" />
                             <input type="email" class="email-input" name="email" placeholder="Enter your email" required>
