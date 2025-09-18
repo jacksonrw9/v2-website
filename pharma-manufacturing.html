@@ -1244,8 +1244,7 @@
                     <div class="email-signup">
                         <h5>Stay Updated</h5>
                         <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
-                        <form class="email-form" name="newsletter" method="POST" data-netlify="true">
-                            <input type="hidden" name="form-name" value="newsletter" />
+                        <form class="email-form" id="newsletter-form">
                             <input type="email" class="email-input" name="email" placeholder="Enter your email" required>
                             <button type="submit" class="email-submit">Subscribe</button>
                         </form>
@@ -1309,6 +1308,48 @@
             if (event.key === 'Escape') {
                 closeMobileMenu();
             }
+        });
+
+        // HubSpot Form Integration
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = e.target.querySelector('input[name="email"]').value;
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Disable button during submission
+            submitBtn.textContent = 'Subscribing...';
+            submitBtn.disabled = true;
+            
+            // Submit to HubSpot
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    fields: [
+                        {
+                            name: "email",
+                            value: email
+                        }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.textContent = 'Subscribed!';
+                e.target.reset();
+                setTimeout(() => {
+                    submitBtn.textContent = 'Subscribe';
+                    submitBtn.disabled = false;
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                submitBtn.textContent = 'Error - Try Again';
+                submitBtn.disabled = false;
+            });
         });
     </script>
 </body>
