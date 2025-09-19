@@ -402,6 +402,44 @@
             min-height: 120px;
         }
 
+        /* Hide default date input placeholder text */
+        input[type="date"]::-webkit-datetime-edit-text {
+            color: transparent;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-month-field {
+            color: transparent;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-day-field {
+            color: transparent;
+        }
+
+        input[type="date"]::-webkit-datetime-edit-year-field {
+            color: transparent;
+        }
+
+        /* Show text when focused or has value */
+        input[type="date"]:focus::-webkit-datetime-edit-text,
+        input[type="date"]:valid::-webkit-datetime-edit-text {
+            color: #333;
+        }
+
+        input[type="date"]:focus::-webkit-datetime-edit-month-field,
+        input[type="date"]:valid::-webkit-datetime-edit-month-field {
+            color: #333;
+        }
+
+        input[type="date"]:focus::-webkit-datetime-edit-day-field,
+        input[type="date"]:valid::-webkit-datetime-edit-day-field {
+            color: #333;
+        }
+
+        input[type="date"]:focus::-webkit-datetime-edit-year-field,
+        input[type="date"]:valid::-webkit-datetime-edit-year-field {
+            color: #333;
+        }
+
         /* Privacy Section */
         .privacy-section {
             background: #f8fafc;
