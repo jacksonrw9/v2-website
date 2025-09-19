@@ -402,24 +402,40 @@
             min-height: 120px;
         }
 
-        /* Hide default date input placeholder text */
+        /* Date input font styling to match page */
+        input[type="date"] {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+        }
+
+        input[type="date"]::-webkit-datetime-edit {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+            color: #9ca3af;
+        }
+
+        /* Style default date input placeholder text */
         input[type="date"]::-webkit-datetime-edit-text {
-            color: transparent;
+            color: #9ca3af;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         input[type="date"]::-webkit-datetime-edit-month-field {
-            color: transparent;
+            color: #9ca3af;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         input[type="date"]::-webkit-datetime-edit-day-field {
-            color: transparent;
+            color: #9ca3af;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         input[type="date"]::-webkit-datetime-edit-year-field {
-            color: transparent;
+            color: #9ca3af;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Show text when focused or has value */
+        /* Show darker text when focused or has value */
         input[type="date"]:focus::-webkit-datetime-edit-text,
         input[type="date"]:valid::-webkit-datetime-edit-text {
             color: #333;
