@@ -400,6 +400,8 @@
         textarea {
             resize: vertical;
             min-height: 120px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
         }
 
         /* Date input font styling to match page */
@@ -1241,19 +1243,83 @@
         document.getElementById('demo-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const firstName = e.target.querySelector('input[name="firstName"]').value;
-            const lastName = e.target.querySelector('input[name="lastName"]').value;
-            const companyName = e.target.querySelector('input[name="companyName"]').value;
-            const email = e.target.querySelector('input[name="email"]').value;
-            const phone = e.target.querySelector('input[name="phone"]').value;
+            // Collect all form field values
+            const firstName = e.target.querySelector('input[name="firstName"]').value.trim();
+            const lastName = e.target.querySelector('input[name="lastName"]').value.trim();
+            const companyName = e.target.querySelector('input[name="companyName"]').value.trim();
+            const email = e.target.querySelector('input[name="email"]').value.trim();
+            const phone = e.target.querySelector('input[name="phone"]').value.trim();
             const seminarDate = e.target.querySelector('input[name="seminarDate"]').value;
-            const message = e.target.querySelector('textarea[name="message"]').value;
+            const message = e.target.querySelector('textarea[name="message"]').value.trim();
             const marketingEmails = e.target.querySelector('input[name="marketingEmails"]').checked;
             const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Validate required fields
+            if (!firstName || !lastName || !companyName || !email) {
+                alert('Please fill in all required fields.');
+                return;
+            }
             
             // Disable button during submission
             submitBtn.textContent = 'Submitting...';
             submitBtn.disabled = true;
+            
+            // Prepare fields array - only include non-empty values
+            const fields = [
+                {
+                    name: "firstname",
+                    value: firstName
+                },
+                {
+                    name: "lastname", 
+                    value: lastName
+                },
+                {
+                    name: "company",
+                    value: companyName
+                },
+                {
+                    name: "email",
+                    value: email
+                },
+                {
+                    name: "hs_lead_status",
+                    value: "NEW"
+                },
+                {
+                    name: "lifecyclestage",
+                    value: "lead"
+                }
+            ];
+            
+            // Add optional fields only if they have values
+            if (phone) {
+                fields.push({
+                    name: "phone",
+                    value: phone
+                });
+            }
+            
+            if (seminarDate) {
+                fields.push({
+                    name: "demo_request_date",
+                    value: seminarDate
+                });
+            }
+            
+            if (message) {
+                fields.push({
+                    name: "message",
+                    value: message
+                });
+            }
+            
+            if (marketingEmails) {
+                fields.push({
+                    name: "marketing_opt_in",
+                    value: "true"
+                });
+            }
             
             // Submit to HubSpot
             fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
@@ -1262,47 +1328,10 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    fields: [
-                        {
-                            name: "firstname",
-                            value: firstName
-                        },
-                        {
-                            name: "lastname", 
-                            value: lastName
-                        },
-                        {
-                            name: "company",
-                            value: companyName
-                        },
-                        {
-                            name: "email",
-                            value: email
-                        },
-                        {
-                            name: "phone",
-                            value: phone
-                        },
-                        {
-                            name: "demo_request_date",
-                            value: seminarDate
-                        },
-                        {
-                            name: "message",
-                            value: message
-                        },
-                        {
-                            name: "hs_lead_status",
-                            value: "NEW"
-                        },
-                        {
-                            name: "lifecyclestage",
-                            value: "lead"
-                        }
-                    ],
+                    fields: fields,
                     context: {
                         pageUri: window.location.href,
-                        pageName: "Demo Request"
+                        pageName: "Demo Request - Request a Demo Page"
                     }
                 })
             })
