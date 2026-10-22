@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POC in a Box Input Form - Phizzle</title>
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    <!-- Google tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41FB3KKW2T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-41FB3KKW2T');
+    </script>
+
+    <!-- HubSpot -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
+    <script>
+        window._hsq = window._hsq || [];
+        window._hsq.push(['setPath', window.location.pathname]);
+        window._hsq.push(['disableFormAutoCollect']);
+    </script>
+
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Le6W1osAAAAAEySdjeFfrJffcwvyfL2ph1Dsxyf"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f4f6f8; color: #333; min-height: 100vh; }
+        nav { background: #30444D; padding: 1rem 0; z-index: 100; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo img { height: 32px; width: auto; display: block; }
+
+        #lock-screen { position: fixed; inset: 0; background: #f4f6f8; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.4s ease; }
+        #lock-screen.fade-out { opacity: 0; pointer-events: none; }
+        #lock-screen.gone { display: none; }
+        .lock-card { background: #fff; border-radius: 16px; box-shadow: 0 8px 40px rgba(0,0,0,0.10); padding: 3rem 2.5rem; width: 100%; max-width: 400px; text-align: center; border: 1px solid #e2e8f0; }
+        .lock-logo { margin-bottom: 2rem; }
+        .lock-icon-wrap { width: 60px; height: 60px; background: #e1ebee; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.6rem; }
+        .lock-card h2 { font-size: 1.15rem; font-weight: 600; color: #1f2937; margin-bottom: 0.35rem; }
+        .lock-card .sub { font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.75rem; line-height: 1.5; }
+        .lock-card input[type="password"], .lock-card input[type="text"] { width: 100%; height: 46px; padding: 0 8px 0 14px; border: none; border-radius: 0; font-size: 0.95rem; font-family: inherit; color: #1f2937; background: transparent; outline: none; box-shadow: none; box-sizing: border-box; vertical-align: middle; }
+        .lock-card input[type="password"]:focus, .lock-card input[type="text"]:focus { border: none; outline: none; box-shadow: none; background: transparent; }
+        .lock-card input[type="password"]:focus { border-color: #436c79; background: #fff; }
+        .lock-card input[type="password"].shake { animation: shake 0.4s ease; border-color: #dc2626; }
+        @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+        .lock-btn { width: 100%; padding: 11px; background: #30444D; color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.2s; }
+        .lock-btn:hover { background: #436c79; }
+        .lock-error { color: #dc2626; font-size: 0.82rem; margin-top: 0.75rem; min-height: 1.1rem; }
+
+        #page-content { display: none; }
+        #page-content.visible { display: block; }
+
+        .page-header { background: #ffffff; padding: 3rem 2rem 2.5rem; border-bottom: 1px solid #e2e8f0; }
+        .page-header-inner { max-width: 860px; margin: 0 auto; }
+        .page-header .badge { display: inline-block; background: #e1ebee; color: #30444D; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 1.25rem; border: 1px solid #c5d8de; }
+        .page-header h1 { font-size: 2rem; font-weight: 700; color: #1f2937; margin-bottom: 1.25rem; }
+        .page-header .subtext { font-size: 0.95rem; color: #64748b; line-height: 1.8; max-width: 860px; }
+        .page-header .subtext strong { color: #30444D; font-weight: 600; }
+
+        .form-wrapper { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+        /* Accordion */
+        .section-header { display: flex; align-items: center; gap: 0.85rem; cursor: pointer; user-select: none; padding: 0.5rem 0; }
+        .section-header:hover .section-title { color: #436c79; }
+        .section-number { width: 36px; height: 36px; background: #30444D; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; transition: background 0.2s; }
+        .section-number.done { background: #22c55e; }
+        .section-title-wrap { flex: 1; }
+        .section-title { font-size: 1.1rem; font-weight: 600; color: #1f2937; transition: color 0.2s; margin: 0; }
+        .section-summary { font-size: 0.8rem; color: #94a3b8; margin-top: 3px; display: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .section-summary.visible { display: block; }
+        .section-chevron { color: #94a3b8; font-size: 0.8rem; transition: transform 0.3s ease; flex-shrink: 0; }
+        .section-chevron.open { transform: rotate(180deg); }
+        .section-body { overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease; max-height: 3000px; opacity: 1; margin-top: 1.75rem; }
+        .section-body.collapsed { max-height: 0 !important; opacity: 0; margin-top: 0; pointer-events: none; }
+        .section-divider { border: none; border-top: 2px dashed #e2e8f0; margin: 2rem 0; }
+        .section-locked .section-number { background: #cbd5e1; }
+        .section-locked .section-title { color: #94a3b8; }
+        .section-locked .section-header { cursor: default; }
+        .section-locked .section-header:hover .section-title { color: #94a3b8; }
+
+        .form-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); border: 1px solid #e2e8f0; padding: 2.5rem; }
+        .field-group { margin-bottom: 1.5rem; }
+        .field-group:last-child { margin-bottom: 0; }
+        .field-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #374151; margin-bottom: 0.5rem; }
+        .required { color: #da5e26; margin-left: 3px; }
+        .field-hint { font-size: 0.78rem; color: #94a3b8; margin-top: 0.4rem; }
+        .field-group input, .field-group textarea, .field-group select { width: 100%; padding: 11px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; font-family: inherit; color: #1f2937; background: #fafafa; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+        .field-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+        .field-group input:focus, .field-group textarea:focus, .field-group select:focus { border-color: #436c79; background: #fff; box-shadow: 0 0 0 3px rgba(67,108,121,0.08); }
+        .field-group textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
+        .field-group select:disabled, .field-group input:disabled { opacity: 0.45; cursor: not-allowed; }
+        .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .address-grid { display: grid; gap: 0.85rem; margin-top: 0.5rem; }
+        .address-row-3 { grid-template-columns: 2fr 1fr 1fr; }
+
+        /* Instrument section */
+        .instrument-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.75rem; margin-bottom: 1.5rem; }
+        .instrument-card:last-of-type { margin-bottom: 0; }
+        .instrument-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .puck-badge { background: #30444D; color: #fff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.8px; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; white-space: nowrap; }
+        .instrument-card-header p { font-size: 0.82rem; color: #94a3b8; }
+
+        .form-actions { margin-top: 2rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .submit-btn { padding: 12px 2rem; background: #da5e26; color: #fff; border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.2s; }
+        .submit-btn:hover { background: #b85320; }
+        .submit-note { font-size: 0.8rem; color: #94a3b8; }
+        .success-banner { display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; color: #166534; font-size: 0.9rem; font-weight: 500; align-items: center; gap: 0.75rem; }
+        .success-banner.show { display: flex; }
+
+        footer { background: #1e293b; color: #94a3b8; text-align: center; padding: 1.5rem; font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 1.5rem; }
+            .form-card { padding: 1.5rem; }
+            .field-row { grid-template-columns: 1fr; margin-bottom: 0; }
+            .field-row .field-group { margin-bottom: 1.5rem; }
+            .address-row-3 { grid-template-columns: 1fr; }
+            .form-wrapper { padding: 2rem 1rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle">
+        </a>
+    </div>
+</nav>
+
+<div id="lock-screen">
+    <div class="lock-card">
+        <div class="lock-logo">
+            <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle" style="height:52px;filter:invert(1) sepia(1) saturate(0);opacity:0.6;">
+        </div>
+        <div class="lock-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#30444D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+        </div>
+        <h2>Restricted Access</h2>
+        <p class="sub">This page is for Phizzle POC participants only. Enter the password from the email that brought you here.</p>
+        <div style="display:table; width:100%; border:1px solid #d1d5db; border-radius:8px; background:#fafafa; margin-bottom:0.85rem; overflow:hidden; height:46px;">
+            <input type="password" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter') tryUnlock()" autocomplete="off" style="display:table-cell; width:100%; padding:0 8px 0 14px; height:46px; line-height:46px; border:none; outline:none; background:transparent; font-size:0.95rem; font-family:inherit; color:#1f2937; vertical-align:middle;" />
+            <span style="display:table-cell; width:40px; vertical-align:middle; text-align:center; cursor:pointer;" onclick="togglePwVisibility()">
+                <svg id="pw-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </span>
+        </div>
+        <button class="lock-btn" onclick="tryUnlock()">Unlock Page</button>
+        <div class="lock-error" id="lock-error"></div>
+    </div>
+</div>
+
+<div id="page-content">
+    <div class="page-header">
+        <div class="page-header-inner">
+        <h1>POC in a Box Input Form</h1>
+        <p class="subtext">
+            The Phizzle team is super excited to be preparing your demo in a box. We will provide <strong>2 Edge Puck Data Connectors</strong> and a <strong>Phizzle-configured laptop</strong> with all necessary software and backend services pre-installed.<br><br>
+            Each Edge Puck can be paired with only one laboratory instrument. To ensure the devices are properly configured and the demo experience is optimized, we would like to gather a few details in advance.<br><br>
+            Please provide the following information for the instruments and sites where the Edge Puck and Data Connector will be deployed. <strong>Note:</strong> the instruments selected should have USB capabilities to get the maximum value from the Data Connector module.
+        </p>
+        </div>
+    </div>
+
+    <div class="form-wrapper">
+
+        <!-- SECTION 1 -->
+        <div id="section1-wrap">
+            <div class="section-header" onclick="toggleSection(1)">
+                <div class="section-number" id="num1">1</div>
+                <div class="section-title-wrap">
+                    <div class="section-title">Contact Information &amp; Shipping Address</div>
+                    <div class="section-summary" id="summary1"></div>
+                </div>
+                <span class="section-chevron open" id="chevron1">&#9660;</span>
+            </div>
+            <div class="section-body" id="body1">
+        <div class="form-card">
+            <div class="field-row">
+                <div class="field-group" style="margin-bottom:0">
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" name="first_name" placeholder="" required />
+                </div>
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" name="last_name" placeholder="" required />
+                </div>
+            </div>
+            <div class="field-row">
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Job Title <span class="required">*</span></label>
+                    <input type="text" name="title" placeholder="" required />
+                </div>
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Company <span class="required">*</span></label>
+                    <input type="text" name="company" placeholder="" required />
+                </div>
+            </div>
+            <div class="field-row">
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" placeholder="" required />
+                </div>
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" placeholder="" required />
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Shipping Address <span class="required">*</span></label>
+                <div class="address-grid">
+                    <input type="text" name="address_line1" placeholder="Street address" required />
+                    <input type="text" name="address_line2" placeholder="Apt, suite, building (optional)" />
+                    <div class="address-grid address-row-3">
+                        <input type="text" name="city" placeholder="City" required />
+                        <input type="text" name="state" placeholder="State / Province" required />
+                        <input type="text" name="zip" placeholder="ZIP / Postal code" required />
+                    </div>
+                    <input type="text" name="country" placeholder="Country" value="United States" required />
+                </div>
+            </div>
+            <div class="field-group">
+                <label>Delivery Notes <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+                <textarea name="delivery_notes" placeholder="Loading dock hours, on-site contact, access codes, etc."></textarea>
+            </div>
+            <div style="margin-top:2rem;display:flex;justify-content:flex-end;">
+                <button type="button" onclick="completeSection1()" style="padding:11px 1.75rem;background:#30444D;color:#fff;border:none;border-radius:8px;font-size:0.9rem;font-weight:600;font-family:inherit;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#436c79'" onmouseout="this.style.background='#30444D'">Continue to Instrument Selection &rarr;</button>
+            </div>
+        </div><!-- /.form-card -->
+            </div><!-- /.section-body -->
+        </div><!-- /#section1-wrap -->
+
+        <hr class="section-divider">
+
+        <!-- SECTION 2 -->
+        <div id="section2-wrap" class="section-locked">
+            <div class="section-header" onclick="toggleSection(2)">
+                <div class="section-number" id="num2">2</div>
+                <div class="section-title-wrap">
+                    <div class="section-title">Instrument Selection</div>
+                    <div class="section-summary" id="summary2"></div>
+                </div>
+                <span class="section-chevron" id="chevron2">&#9660;</span>
+            </div>
+            <div class="section-body collapsed" id="body2">
+        <p style="font-size:0.88rem;color:#64748b;margin-bottom:1.75rem;line-height:1.6;">
+            Select one instrument per Edge Puck. First choose a category, then search or scroll to find your specific instrument model.
+</p>
+
+        <div class="form-card">
+            <!-- PUCK 1 -->
+            <div class="instrument-card">
+                <div class="instrument-card-header">
+                    <span class="puck-badge">&#9679; Edge Puck 1</span>
+                    <p>Select the instrument this Edge Puck will connect to</p>
+                </div>
+                <div class="field-group">
+                    <label>Instrument Category <span class="required">*</span></label>
+                    <select id="cat1" onchange="filterInstruments(1)">
+                        <option value="">&#8212; Select a category &#8212;</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Select Instrument <span class="required">*</span></label>
+                    <select id="inst1" onchange="handleInstChange(1)" disabled>
+                        <option value="">&#8212; Select a category first &#8212;</option>
+                    </select>
+                </div>
+                <div class="field-group" id="other_instrument_wrap_1" style="display:none;">
+                    <label>Instrument Name <span class="required">*</span></label>
+                    <input type="text" name="other_instrument_1" placeholder="Enter instrument name" id="other_instrument_1" />
+                </div>
+                <div class="field-group">
+                    <label>Serial Number <span class="required">*</span></label>
+                    <input type="text" name="serial_number_1" placeholder="" required />
+                </div>
+                <div class="field-group">
+                    <label>Site Name <span class="required">*</span></label>
+                    <input type="text" name="site_name_1" placeholder="" required />
+                </div>
+                <div class="field-group">
+                    <label>Additional Details (Building, Lab, etc.) <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+                    <input type="text" name="site_details_1" placeholder="" />
+                </div>
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Timezone <span class="required">*</span></label>
+                    <select name="timezone_1" required>
+                        <option value="">&#8212; Select timezone &#8212;</option>
+                        <option>Eastern Time (ET)</option>
+                        <option>Central Time (CT)</option>
+                        <option>Mountain Time (MT)</option>
+                        <option>Pacific Time (PT)</option>
+                        <option>Alaska Time (AKT)</option>
+                        <option>Hawaii Time (HT)</option>
+                        <option>UTC</option>
+                        <option>GMT</option>
+                        <option>Central European Time (CET)</option>
+                        <option>Eastern European Time (EET)</option>
+                        <option>India Standard Time (IST)</option>
+                        <option>China Standard Time (CST)</option>
+                        <option>Japan Standard Time (JST)</option>
+                        <option>Australia Eastern Time (AET)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- PUCK 2 -->
+            <div class="instrument-card">
+                <div class="instrument-card-header">
+                    <span class="puck-badge">&#9679; Edge Puck 2</span>
+                    <p>Select the instrument this Edge Puck will connect to</p>
+                </div>
+                <div class="field-group">
+                    <label>Instrument Category <span class="required">*</span></label>
+                    <select id="cat2" onchange="filterInstruments(2)">
+                        <option value="">&#8212; Select a category &#8212;</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>Select Instrument <span class="required">*</span></label>
+                    <select id="inst2" onchange="handleInstChange(2)" disabled>
+                        <option value="">&#8212; Select a category first &#8212;</option>
+                    </select>
+                </div>
+                <div class="field-group" id="other_instrument_wrap_2" style="display:none;">
+                    <label>Instrument Name <span class="required">*</span></label>
+                    <input type="text" name="other_instrument_2" placeholder="Enter instrument name" id="other_instrument_2" />
+                </div>
+                <div class="field-group">
+                    <label>Serial Number <span class="required">*</span></label>
+                    <input type="text" name="serial_number_2" placeholder="" required />
+                </div>
+                <div class="field-group">
+                    <label>Site Name <span class="required">*</span></label>
+                    <input type="text" name="site_name_2" placeholder="" required />
+                </div>
+                <div class="field-group">
+                    <label>Additional Details (Building, Lab, etc.) <span style="font-weight:400;color:#94a3b8;">(optional)</span></label>
+                    <input type="text" name="site_details_2" placeholder="" />
+                </div>
+                <div class="field-group" style="margin-bottom:0">
+                    <label>Timezone <span class="required">*</span></label>
+                    <select name="timezone_2" required>
+                        <option value="">&#8212; Select timezone &#8212;</option>
+                        <option>Eastern Time (ET)</option>
+                        <option>Central Time (CT)</option>
+                        <option>Mountain Time (MT)</option>
+                        <option>Pacific Time (PT)</option>
+                        <option>Alaska Time (AKT)</option>
+                        <option>Hawaii Time (HT)</option>
+                        <option>UTC</option>
+                        <option>GMT</option>
+                        <option>Central European Time (CET)</option>
+                        <option>Eastern European Time (EET)</option>
+                        <option>India Standard Time (IST)</option>
+                        <option>China Standard Time (CST)</option>
+                        <option>Japan Standard Time (JST)</option>
+                        <option>Australia Eastern Time (AET)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="submit-btn" onclick="handleSubmit()">Submit Form</button>
+            </div>
+            <p style="font-size:0.85rem;color:#64748b;line-height:1.7;margin-top:1.25rem;">Once the team has received your information we will configure your demo in a box and provide you additional details in terms of shipment, terms &amp; conditions, etc.<br><br>If you have any questions please reach out to Ben Davis at <a href="mailto:bdavis@phizzle.com" style="color:#436c79;text-decoration:none;font-weight:500;">bdavis@phizzle.com</a></p>
+            <div class="success-banner" id="success-msg">
+                <span>&#9989;</span>
+                Form submitted! The Phizzle team will be in touch to confirm your shipping details and instrument configuration before dispatch.
+            </div><!-- /.form-card -->
+            </div><!-- /.section-body -->
+        </div><!-- /#section2-wrap -->
+
+    </div>
+</div>
+
+<script>
+const PAGE_PASSWORD = "phizzle2026";
+if (sessionStorage.getItem("poc_unlocked") === "true") {
+    document.getElementById("lock-screen").classList.add("gone");
+    document.getElementById("page-content").classList.add("visible");
+}
+function togglePwVisibility() {
+    const input = document.getElementById('pw-input');
+    const showing = input.type === 'password';
+    input.type = showing ? 'text' : 'password';
+    const icon = document.getElementById('pw-eye-icon');
+    icon.innerHTML = showing
+        ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>'
+        : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+}
+
+function tryUnlock() {
+    const input = document.getElementById("pw-input");
+    const error = document.getElementById("lock-error");
+    if (input.value === PAGE_PASSWORD) {
+        sessionStorage.setItem("poc_unlocked", "true");
+        const lock = document.getElementById("lock-screen");
+        lock.classList.add("fade-out");
+        setTimeout(() => { lock.classList.add("gone"); document.getElementById("page-content").classList.add("visible"); }, 400);
+    } else {
+        error.textContent = "Incorrect password. Please try again.";
+        input.value = "";
+        input.classList.add("shake");
+        setTimeout(() => input.classList.remove("shake"), 400);
+        input.focus();
+    }
+}
+
+const instruments = {
+  "Balances & Weighing": [{name:"Mettler Toledo MX205DU Analytical Balance",c:true},{name:"Mettler Toledo MX4002 Precision Balance",c:true},{name:"Mettler Toledo MX105DU Analytical Balance",c:false},{name:"Mettler Toledo MX105 Analytical Balance",c:false},{name:"Mettler Toledo MX104 Analytical Balance",c:false},{name:"Mettler Toledo MX204 Analytical Balance",c:false},{name:"Mettler Toledo MX304 Analytical Balance",c:false},{name:"Mettler Toledo MX303 Analytical Balance",c:false},{name:"Mettler Toledo MX303N Analytical Balance",c:false},{name:"Mettler Toledo MX603 Analytical Balance",c:false},{name:"Mettler Toledo MX603N Analytical Balance",c:false},{name:"Mettler Toledo MX1203 Analytical Balance",c:false},{name:"Mettler Toledo MX1203N Analytical Balance",c:false},{name:"Mettler Toledo MX2002 Analytical Balance",c:false},{name:"Mettler Toledo MX6002 Analytical Balance",c:false},{name:"Mettler Toledo MX6002DR Analytical Balance",c:false},{name:"Mettler Toledo MX12002 Analytical Balance",c:false},{name:"Mettler Toledo MX6001 Analytical Balance",c:false},{name:"Mettler Toledo MX8001 Analytical Balance",c:false},{name:"Mettler Toledo MX12001L Analytical Balance",c:false},{name:"Mettler Toledo MX16001L Analytical Balance",c:false},{name:"Mettler Toledo MX32001L Analytical Balance",c:false},{name:"Mettler Toledo MX32000L Analytical Balance",c:false},{name:"Sartorius Cubis II Lab Balance",c:true},{name:"Sartorius Entris II Lab Balance",c:true},{name:"Sartorius Quintix Lab Balance",c:true},{name:"Sartorius Secura Lab Balance",c:true},{name:"Sartorius Cubis III Lab Balance",c:false},{name:"Sartorius Practum Lab Balance",c:false},{name:"Sartorius Quintix Pro Lab Balance",c:false}],
+  "Biochemistry Analyzers": [{name:"YSI Biochemistry Analyzer",c:true},{name:"YSI 2900D Biochemistry Analyzer",c:false},{name:"YSI 2950 Biochemistry Analyzer",c:false}],
+  "Catalysis & Reactor Systems": [{name:"PID Eng&Tech Microactivity Effi",c:true},{name:"PID Eng&Tech FR Series Flow Reactor",c:false},{name:"PID Eng&Tech Microactivity Reference",c:false}],
+  "Confocal / Fluorescence Microscopy": [{name:"Zeiss Axioscan 7 Slide Scanner",c:true},{name:"Zeiss LSM 800 Confocal Microscope",c:true},{name:"Zeiss LSM 880 Confocal Microscope",c:true},{name:"Zeiss LSM 910 Confocal Microscope",c:true},{name:"Zeiss LSM 990 Confocal Microscope",c:true},{name:"Zeiss Axioscan Z.1 Slide Scanner",c:false},{name:"Zeiss LSM 900 Confocal Microscope",c:false},{name:"Zeiss LSM 980 Confocal Microscope",c:false}],
+  "Continuous Flow Analysis": [{name:"SEAL Analytical AA500",c:true},{name:"SEAL Analytical AA100 AutoAnalyzer",c:false},{name:"SEAL Analytical AA3 HR AutoAnalyzer",c:false},{name:"SEAL Analytical QuAAtro39 AutoAnalyzer",c:false}],
+  "Diffusion Furnaces": [{name:"Tystar Mini Tytan 3600 Furnace System",c:true},{name:"Tystar Mini Tytan 3800 Furnace System",c:true},{name:"Tystar Mini Tytan 4600 Furnace System",c:true}],
+  "Digital Microscopy": [{name:"Olympus DSX1000 Digital Microscope",c:true},{name:"Olympus DSX510i Digital Microscope",c:true},{name:"Olympus DSX510 Digital Microscope",c:false}],
+  "Direct Write Lithography": [{name:"Heidelberg Instruments DWL 66+ Laser Writer",c:true},{name:"Heidelberg Instruments DWL 2000 Laser Writer",c:false},{name:"Heidelberg Instruments MLA 150 Maskless Aligner",c:false}],
+  "Dynamic Light Scattering (DLS)": [{name:"Anton Paar Litesizer DLS 701",c:true},{name:"Anton Paar Litesizer DLS 101",c:false},{name:"Anton Paar Litesizer DLS 301",c:false},{name:"Anton Paar Litesizer DLS 501",c:false},{name:"Malvern Panalytical Zetasizer Nano ZS",c:true},{name:"Malvern Panalytical Zetasizer Nano ZS90",c:false},{name:"Malvern Panalytical Zetasizer Nano ZSP",c:false},{name:"Malvern Panalytical Zetasizer Pro",c:false},{name:"Malvern Panalytical Zetasizer Ultra",c:false}],
+  "Electron Microscopy (TEM / Cryo-EM)": [{name:"Agilent 7890A GC System",c:true},{name:"Annealsys AS-Master RTA System",c:true},{name:"Annealsys AS-One 100 RTA System",c:true},{name:"Annealsys AS-One 150 RTA System",c:true},{name:"Bruker 900 WBUS2 NMR System",c:true},{name:"Denton Vacuum Explorer Sputter System",c:true},{name:"Denton Vacuum Discovery Sputter System",c:false},{name:"Denton Vacuum Explorer 14 Sputter System",c:false},{name:"ECM Technologies JetFirst 100 RTA System",c:true},{name:"ECM Technologies JetFirst 150 RTA System",c:true},{name:"ECM Technologies JetFirst 200 RTA System",c:true},{name:"ECM Technologies JetFirst 300 RTA System",c:true},{name:"Keithley 4200-SCS Semiconductor Characterization System",c:true},{name:"Mettler Toledo MP Series Melting Point System",c:true},{name:"Mettler Toledo MP30 Melting Point System",c:false},{name:"Mettler Toledo MP55 Melting Point System",c:false},{name:"Mettler Toledo MP70 Melting Point System",c:false},{name:"Mettler Toledo MP80 Melting Point System",c:false},{name:"Mettler Toledo MP90 Melting Point System",c:false},{name:"Oxford Instruments Alpha 300 A AFM System",c:true},{name:"Oxford Instruments Alpha 300 Apyron Raman System",c:true},{name:"Oxford Instruments Alpha 300 R Raman System",c:true},{name:"Oxford Instruments Alpha 300 RA Raman/AFM System",c:true},{name:"Oxford Instruments Alpha 300 RI Raman/Inverse System",c:true},{name:"Oxford Instruments Alpha 300 RS Raman/SNOM System",c:true},{name:"Oxford Instruments Alpha 300 S SNOM System",c:true},{name:"Particle Measuring Systems Lasair III 110 Particle Counter",c:true},{name:"Particle Measuring Systems Lasair III Particle Counter",c:true},{name:"Particle Measuring Systems Lasair Pro Particle Counter",c:false},{name:"Thermo Fisher Glacios 2 Cryo-TEM",c:true},{name:"Thermo Fisher Glacios Cryo-TEM",c:true},{name:"Thermo Fisher Spectra 300 TEM",c:true},{name:"Thermo Fisher Talos Arctica Cryo-TEM",c:true},{name:"Thermo Fisher Talos F200i TEM",c:true},{name:"Thermo Fisher Titan Themis TEM",c:true},{name:"Thermo Fisher Krios G4 Cryo-TEM",c:false},{name:"Thermo Fisher Tundra Cryo-TEM",c:false},{name:"Applied Biosystems Veriti 96-Well Fast Thermal Cycler",c:false},{name:"Applied Biosystems Veriti Dx 96-Well Thermal Cycler",c:false},{name:"Applied Biosystems VeritiPro Thermal Cycler",c:false}],
+  "Elemental Analysis": [{name:"Shimadzu TOC-L / TNM-L",c:true},{name:"Shimadzu SSM-5000A Solid Sample Combustion Unit",c:false},{name:"Thermo Fisher Flash 200 Elemental Analyzer",c:true},{name:"Thermo Fisher Flash 2000 Elemental Analyzer",c:false},{name:"Thermo Fisher FlashSmart Elemental Analyzer",c:false}],
+  "FTIR / Infrared Spectroscopy": [{name:"Thermo Fisher iS50R FT-IR",c:true},{name:"Thermo Fisher Nicolet iS10",c:true},{name:"Thermo Fisher Nicolet iS20 FTIR",c:false}],
+  "GPC / SEC": [{name:"Agilent GPC Dual Angle",c:true},{name:"Agilent GPC RID Aqua",c:true},{name:"Agilent GPC Viscometer (G7802A)",c:false},{name:"Climet CI-3100 Trident Remote Particle Counter",c:false}],
+  "Gas Chromatography (GC)": [{name:"Agilent 7820A GC",c:false},{name:"Agilent 7890B GC",c:false},{name:"Agilent 8860 GC",c:false},{name:"Agilent 8890 GC",c:false},{name:"Agilent Intuvo 9000 GC",c:false}],
+  "Genomics & Cell Analysis": [{name:"Agilent 2100 Bioanalyzer",c:true},{name:"Agilent Femto Pulse",c:true},{name:"Agilent TapeStation 4200",c:true},{name:"Agilent 4150 TapeStation",c:false},{name:"Agilent 5200 Fragment Analyzer",c:false},{name:"Agilent 5300 Fragment Analyzer",c:false},{name:"Agilent 5400 Fragment Analyzer",c:false},{name:"ChemoMetec NucleoCounter NC-200 Cell Counter",c:true},{name:"ChemoMetec NucleoCounter NC-202 Cell Counter",c:false},{name:"ChemoMetec NucleoCounter NC-203 Cell Counter",c:false},{name:"ChemoMetec NucleoCounter NC-250 Cell Counter",c:false},{name:"ChemoMetec NucleoCounter NC-3000 Cell Counter",c:false},{name:"Sage Science HT0057",c:true},{name:"Sage Science BluePippin",c:false},{name:"Sage Science LightBench",c:false},{name:"Sage Science Pippin Prep",c:false},{name:"Syngene G:BOX",c:true},{name:"Syngene G:BOX Chemi XRQ",c:false},{name:"Syngene G:BOX Chemi XX6",c:false},{name:"Syngene G:BOX Chemi XX9",c:false},{name:"Syngene G:BOX F3",c:false},{name:"Syngene G:BOX Mini",c:false}],
+  "Gravimetric Analysis": [{name:"Rubotherm MCU-000101 / HCU-59",c:true}],
+  "ICP-OES (Elemental Analysis)": [{name:"Agilent ICP-OES 5110",c:true},{name:"Agilent ICP-OES 5900",c:true},{name:"Agilent 5100 ICP-OES",c:false},{name:"Agilent 5800 ICP-OES VDV",c:false},{name:"Agilent 5900 SVDV ICP-OES",c:false}],
+  "Liquid Chromatography (HPLC/UHPLC)": [{name:"Agilent 1260 Infinity II",c:true},{name:"Agilent 1220 Infinity II LC",c:false},{name:"Agilent 1260 Infinity II Bio-Inert LC",c:false},{name:"Agilent 1260 Infinity II MALS Detector",c:false},{name:"Agilent 1260 Infinity II Preparative LC",c:false},{name:"Agilent 1260 Infinity II RID",c:false},{name:"Agilent 1260 Infinity III RID",c:false},{name:"Agilent 1290 Infinity II LC",c:false},{name:"Agilent 1290 Infinity II RID",c:false},{name:"Thermo Fisher Vanquish",c:true},{name:"Thermo Fisher Vanquish Core HPLC",c:false},{name:"Thermo Fisher Vanquish Duo UHPLC",c:false},{name:"Thermo Fisher Vanquish Flex UHPLC",c:false},{name:"Thermo Fisher Vanquish Horizon UHPLC",c:false}],
+  "Mass Spectrometry": [{name:"Agilent 8800 ICP-MS Triple Quad",c:true},{name:"Agilent 8900 ICP-MS Triple Quad",c:false},{name:"Bruker Compact",c:true},{name:"Bruker NeoFlex",c:true},{name:"Bruker autoflex MALDI-TOF",c:false},{name:"Bruker impact II VIP",c:false},{name:"Bruker maXis II",c:false},{name:"Bruker microflex MALDI-TOF",c:false},{name:"Bruker rapifleX MALDI-TOF/TOF",c:false},{name:"Bruker ultrafleXtreme MALDI-TOF/TOF",c:false},{name:"Hiden Analytical QGA",c:true},{name:"Hiden Analytical QGA 2.0",c:false},{name:"MKS Cirrus 3",c:true},{name:"MKS SD650 Cirrus 3",c:true},{name:"MKS Cirrus 3-XD",c:false},{name:"Thermo Fisher Altis Plus Mass Spec",c:true},{name:"Thermo Fisher Orbitrap Exploris 120",c:true},{name:"Thermo Fisher Orbitrap Exploris 240",c:false},{name:"Thermo Fisher Orbitrap Exploris 480",c:false},{name:"Thermo Fisher Orbitrap Exploris MX",c:false},{name:"Thermo Fisher TSQ Altis",c:false},{name:"Thermo Fisher TSQ Altis MD",c:false},{name:"Thermo Fisher TSQ Fortis",c:false},{name:"Thermo Fisher TSQ Fortis Plus",c:false},{name:"Thermo Fisher TSQ Quantis",c:false}],
+  "NMR Spectroscopy": [{name:"Bruker Ascend 800 NMR Magnet",c:true},{name:"Bruker Ultrashield 400 NMR Magnet",c:true},{name:"Bruker Ultrashield 500 NMR Magnet",c:true},{name:"Bruker Ultrashield 600 NMR Magnet",c:true},{name:"Bruker Ultrashield 700 NMR Magnet",c:true},{name:"Bruker 900 WBUS2",c:false},{name:"Bruker Ascend 900 NMR Magnet",c:false},{name:"Bruker Ascend Evo 400 NMR Magnet",c:false},{name:"Bruker Ascend Evo 500 NMR Magnet",c:false},{name:"Bruker Ascend Evo 600 NMR Magnet",c:false}],
+  "Optical Microscopy": [{name:"Leica DM4000 B Upright Microscope",c:true},{name:"Leica DM4000 M Upright Microscope",c:true},{name:"Leica DM5000 B Upright Microscope",c:true},{name:"Leica DM5500 B Upright Microscope",c:true},{name:"Leica DM6000 B Upright Microscope",c:true},{name:"Leica DM6000 M Upright Microscope",c:true},{name:"Leica DMI4000 B Inverted Microscope",c:true},{name:"Leica DMI5000 M Inverted Microscope",c:true},{name:"Leica DMI6000 M Inverted Microscope",c:true},{name:"Leica DM4000 M",c:false},{name:"Leica DM6000 M",c:false},{name:"Leica DMI8 Inverted Microscope",c:false},{name:"Nikon Eclipse L200ND Upright Microscope",c:true},{name:"Nikon Eclipse L300N Upright Microscope",c:true},{name:"Nikon Eclipse L300ND Upright Microscope",c:true},{name:"Nikon LV100 POL Polarizing Microscope",c:true},{name:"Nikon LV100D Upright Microscope",c:true},{name:"Nikon LV100N Upright Microscope",c:true},{name:"Nikon LV100ND Upright Microscope",c:true},{name:"Nikon LV150N Upright Microscope",c:true},{name:"Nikon LV150NA Upright Microscope",c:true},{name:"Olympus BX43 Upright Microscope",c:true},{name:"Olympus BX46 Upright Microscope",c:true},{name:"Olympus BX53 Upright Microscope",c:true},{name:"Olympus CKX53 Inverted Microscope",c:true},{name:"Olympus IX53 Inverted Microscope",c:true},{name:"Olympus BX63 Upright Microscope",c:false},{name:"Olympus CKX31 Inverted Microscope",c:false},{name:"Olympus IX73 Inverted Microscope",c:false},{name:"Olympus IX83 Inverted Microscope",c:false}],
+  "PCR & Thermal Cycling": [{name:"Eppendorf Mastercycler X50s",c:true},{name:"Eppendorf Mastercycler X50i",c:false},{name:"Thermo Fisher QuantStudio 7",c:true},{name:"Thermo Fisher QuantStudio 1",c:false},{name:"Thermo Fisher QuantStudio 12K Flex",c:false},{name:"Thermo Fisher QuantStudio 3",c:false},{name:"Thermo Fisher QuantStudio 5",c:false},{name:"Thermo Fisher QuantStudio 6 Flex",c:false},{name:"Thermo Fisher QuantStudio 6 Pro",c:false},{name:"Thermo Fisher QuantStudio 7 Flex",c:false},{name:"Thermo Fisher QuantStudio 7 Pro",c:false},{name:"Veriti 96-Well Thermal Cycler",c:true}],
+  "Particle Counting": [{name:"Climet CI-1070 Portable Particle Counter",c:true},{name:"Climet CI-170 Portable Particle Counter",c:true},{name:"Climet CI-3100 Remote Particle Counter",c:true},{name:"Climet CI-570 Portable Particle Counter",c:true},{name:"Climet CI-770 Portable Particle Counter",c:true},{name:"Climet CI-1054 Portable Particle Counter",c:false},{name:"Climet CI-154 Portable Particle Counter",c:false},{name:"Climet CI-3100 OPT Remote Particle Counter",c:false},{name:"Climet CI-454 Portable Particle Counter",c:false},{name:"Elektronik PZG Particle Monitor",c:true},{name:"Lighthouse Worldwide Solutions Apex P Portable Particle Counter",c:true},{name:"Lighthouse Worldwide Solutions Apex Z Portable Particle Counter",c:true},{name:"Lighthouse Worldwide Solutions Solair Particle Counter",c:true},{name:"Lighthouse Worldwide Solutions Apex P3 Portable Particle Counter",c:false},{name:"Lighthouse Worldwide Solutions Apex P5 Portable Particle Counter",c:false},{name:"Lighthouse Worldwide Solutions Apex Z3 Portable Particle Counter",c:false},{name:"Lighthouse Worldwide Solutions Apex Z50 Portable Particle Counter",c:false},{name:"Lighthouse Worldwide Solutions Solair 3100 Particle Counter",c:false},{name:"Lighthouse Worldwide Solutions Solair 3350 Particle Counter",c:false},{name:"Met One / Beckman Coulter 3415 Portable Particle Counter",c:true},{name:"Met One / Beckman Coulter 3415+ Portable Particle Counter",c:true},{name:"Met One / Beckman Coulter 3413 Portable Particle Counter",c:false},{name:"Met One / Beckman Coulter 3413+ Portable Particle Counter",c:false},{name:"Met One / Beckman Coulter 3423 Portable Particle Counter",c:false},{name:"Met One / Beckman Coulter 3425 Portable Particle Counter",c:false},{name:"Met One / Beckman Coulter 3445 Portable Particle Counter",c:false},{name:"TSI AeroTrak 9310 Portable Particle Counter",c:true},{name:"TSI AeroTrak 9350 Portable Particle Counter",c:false},{name:"TSI AeroTrak 9510 Portable Particle Counter",c:false},{name:"TSI AeroTrak 9550 Portable Particle Counter",c:false},{name:"TSI AeroTrak+ A100 Portable Particle Counter",c:false}],
+  "Photolithography": [{name:"EV Group EVG 6200 BA Mask Aligner",c:true},{name:"EV Group EVG 6200 Mask Aligner",c:true},{name:"EV Group EVG 6200 NT Mask Aligner",c:true},{name:"EV Group EVG 620 Mask Aligner",c:false},{name:"EV Group EVG 640 Mask Aligner",c:false}],
+  "Plasma Etch / CVD": [{name:"Oxford Instruments Plasmalab System 100 Etch/CVD",c:true},{name:"Oxford Instruments Plasmalab System 133 Etch/CVD",c:true},{name:"Oxford Instruments Plasmalab System 80 Etch/CVD",c:true},{name:"Oxford Instruments Plasmalab System 800 Etch/CVD",c:true}],
+  "Refractometry": [{name:"Mettler Toledo RM Series Refractometer",c:true},{name:"Mettler Toledo RM40 Refractometer",c:false},{name:"Mettler Toledo RM50 Refractometer",c:false},{name:"Mettler Toledo RX50 Refractometer",c:false}],
+  "SAXS / WAXS": [{name:"Xenocs BioXolver SAXS/WAXS System",c:true},{name:"Xenocs inXider SAXS/WAXS System",c:true},{name:"Xenocs Xeuss 2.0 SAXS/WAXS System",c:true},{name:"Xenocs Xeuss 3.0 SAXS/WAXS System",c:true},{name:"Xenocs Xeuss SAXS/WAXS System",c:true}],
+  "Sample Preparation (Ultrasonication)": [{name:"Covaris E220 Focused Ultrasonicator",c:true},{name:"Covaris E220evolution Focused-ultrasonicator",c:false},{name:"Covaris LE220-plus Focused-ultrasonicator",c:false},{name:"Covaris LE220R-plus Focused-ultrasonicator",c:false},{name:"Covaris LE220Rsc Focused-ultrasonicator",c:false},{name:"Covaris M220 Focused-ultrasonicator",c:false},{name:"Covaris ME220 Focused-ultrasonicator",c:false},{name:"Covaris ML230 Focused-ultrasonicator",c:false},{name:"Covaris S220 Focused-ultrasonicator",c:false}],
+  "Scanning Probe Microscopy (AFM/SPM)": [{name:"Agilent 5500 SPM/AFM",c:true},{name:"Keysight 5420 AFM/SPM",c:false},{name:"Keysight 5600LS AFM/SPM",c:false},{name:"Keysight 7500 AFM/SPM",c:false},{name:"Keysight 9500 AFM/SPM",c:false}],
+  "Semiconductor Characterization": [{name:"Keithley 2400 Series SourceMeter",c:true},{name:"Keithley 2401 SourceMeter",c:false},{name:"Keithley 2410 SourceMeter",c:false},{name:"Keithley 2420 SourceMeter",c:false},{name:"Keithley 2425 SourceMeter",c:false},{name:"Keithley 2430 SourceMeter",c:false},{name:"Keithley 2450 SourceMeter",c:false},{name:"Keithley 2460 SourceMeter",c:false},{name:"Keithley 2461 SourceMeter",c:false},{name:"Keithley 2470 SourceMeter",c:false},{name:"Keithley 4200A-SCS Parameter Analyzer",c:false}],
+  "Stereo / Zoom Microscopy": [{name:"Nikon SMZ1270 Stereo Microscope",c:true},{name:"Nikon SMZ1270i Stereo Microscope",c:true},{name:"Nikon SMZ18 Stereo Microscope",c:true},{name:"Nikon SMZ25 Stereo Microscope",c:true},{name:"Nikon SMZ745 Stereo Microscope",c:false},{name:"Nikon SMZ800N Stereo Microscope",c:false}],
+  "Surface Area & Porosity (BET)": [{name:"Micromeritics 3Flex 3500",c:true},{name:"Micromeritics 3Flex 3500 Chemi",c:true},{name:"Micromeritics ASAP 2020",c:true},{name:"Micromeritics ASAP 2050",c:true},{name:"Micromeritics ASAP 2420",c:true},{name:"Micromeritics AutoChem II",c:true},{name:"Micromeritics Smart VacPrep",c:true},{name:"Micromeritics 3Flex TCD",c:false},{name:"Micromeritics ASAP 2020 Plus",c:false},{name:"Micromeritics ASAP 2060",c:false},{name:"Micromeritics ASAP 2425",c:false},{name:"Micromeritics ASAP 2460",c:false},{name:"Micromeritics AutoChem 2950 HP",c:false},{name:"Micromeritics AutoChem II 2920",c:false},{name:"Micromeritics AutoChem III",c:false}],
+  "Surface Profilometry": [{name:"Bruker DektakXT Surface Profilometer",c:true},{name:"Bruker Dektak 150 Surface Profilometer",c:false},{name:"Bruker DektakXT Essential Surface Profilometer",c:false},{name:"Zygo NewView 7300 Optical Profiler",c:true},{name:"Zygo NewView 8000 Optical Profiler",c:false},{name:"Zygo NewView 9000 Optical Profiler",c:false}],
+  "Surface Tension / Contact Angle": [{name:"Kruess DSA100B Drop Shape Analyzer",c:true},{name:"Kruess DSA100E Drop Shape Analyzer",c:true},{name:"Kruess DSA100S Drop Shape Analyzer",c:true},{name:"Kruess DSA100W Drop Shape Analyzer",c:true}],
+  "Thermal Analysis (TGA)": [{name:"Netzsch Jupiter STA 449 F1",c:true},{name:"Netzsch Jupiter STA 449 F3",c:true},{name:"Netzsch Jupiter STA 449 F5",c:false},{name:"Rubotherm TGA 5500-0308",c:true},{name:"Rubotherm Discovery HP-TGA 75/750/7500",c:false},{name:"Rubotherm DynTHERM TGA",c:false},{name:"Rubotherm IsoSORP Sorption Analyzer",c:false},{name:"Rubotherm TGA 55",c:false},{name:"Rubotherm TGA 550",c:false}],
+  "UV-Vis Spectroscopy": [{name:"Agilent Cary Eclipse Fluorescence Spectrophotometer",c:false},{name:"Mettler Toledo UV Vis Excellence Spectrophotometer",c:true},{name:"Mettler Toledo UV5 Excellence Spectrophotometer",c:false},{name:"Mettler Toledo UV5Bio Excellence Spectrophotometer",c:false},{name:"Mettler Toledo UV7 Excellence Spectrophotometer",c:false},{name:"PerkinElmer Lambda 950",c:true},{name:"PerkinElmer Lambda 1050",c:false},{name:"PerkinElmer Lambda 850",c:false},{name:"Thermo Fisher NanoDrop 8000",c:true},{name:"Thermo Fisher Varioskan LUX",c:true},{name:"Thermo Fisher Multiskan FC",c:false},{name:"Thermo Fisher Multiskan SkyHigh",c:false},{name:"Thermo Fisher Varioskan ALF",c:false},{name:"Varian Cary Fluorescence Spectrophotometer",c:true}],
+  "Viscometry": [{name:"KEM / Kyoto Electronics EMS-1000",c:true},{name:"KEM / Kyoto Electronics EMS-1000S",c:false}],
+  "Wafer Inspection": [{name:"AIT CMT Series SR2000 Wafer Inspection",c:true},{name:"AIT CMT Series SR2000PV Wafer Inspection",c:true},{name:"AIT CMT Series SR3000 Wafer Inspection",c:true}],
+  "Water Purification": [{name:"Milli-Q IQ 7000",c:true},{name:"Milli-Q IQ 7003",c:false},{name:"Milli-Q IQ 7005",c:false},{name:"Milli-Q IQ 7010",c:false},{name:"Milli-Q IQ 7015",c:false}],
+  "X-Ray Diffraction (XRD)": [{name:"Bruker D2 Phaser 2nd Gen XRD",c:true},{name:"Bruker D8 Advance XRD",c:true},{name:"Bruker D8 Discover XRD",c:true},{name:"Bruker D8 Venture Single Crystal XRD",c:true},{name:"Bruker D6 Phaser XRD",c:false},{name:"Bruker D8 Advance ECO XRD",c:false},{name:"Bruker D8 Endeavor XRD",c:false}],
+  "X-Ray Fluorescence (XRF)": [{name:"Bruker S8 Tiger",c:true},{name:"Bruker S8 Tiger ECO",c:false},{name:"Bruker S8 Tiger Series 2",c:false},{name:"Bruker S8 Tiger Series 3",c:false}],
+  "Zeta Potential / Surface Charge": [{name:"Anton Paar Surpass 3",c:true},{name:"Anton Paar SurPASS 3 Eco",c:false}],
+  "pH / Conductivity": [{name:"Thermo Scientific Orion Pro Star PC215 pH/Conductivity Meter",c:true},{name:"Thermo Scientific Orion Star A215 pH/Conductivity Meter",c:false}]
+};
+
+const categories = Object.keys(instruments).sort();
+[1,2].forEach(n => {
+    const el = document.getElementById('cat'+n);
+    categories.forEach(cat => {
+        const o = document.createElement('option');
+        o.value = cat; o.textContent = cat;
+        el.appendChild(o);
+    });
+    const otherOpt = document.createElement('option');
+    otherOpt.value = 'Other'; otherOpt.textContent = 'Other (not in list)';
+    el.appendChild(otherOpt);
+});
+
+function filterInstruments(n) {
+    const cat = document.getElementById('cat'+n).value;
+    const instEl = document.getElementById('inst'+n);
+    const otherWrap = document.getElementById('other_instrument_wrap_'+n);
+    const otherInput = document.getElementById('other_instrument_'+n);
+    if (!cat) {
+        instEl.innerHTML = '<option value="">&#8212; Select a category first &#8212;</option>';
+        instEl.disabled = true;
+        otherWrap.style.display = 'none';
+        if (otherInput) otherInput.removeAttribute('required');
+        return;
+    }
+    if (cat === 'Other') {
+        instEl.innerHTML = '<option value="other">Other instrument (see below)</option>';
+        instEl.disabled = true;
+        otherWrap.style.display = 'block';
+        if (otherInput) otherInput.setAttribute('required', 'required');
+        return;
+    }
+    otherWrap.style.display = 'none';
+    if (otherInput) otherInput.removeAttribute('required');
+    populateSelect(n, instruments[cat]);
+    instEl.disabled = false;
+}
+
+function populateSelect(n, list) {
+    const el = document.getElementById('inst'+n);
+    el.innerHTML = '<option value="">&#8212; Select an instrument &#8212;</option>';
+    list.forEach(item => {
+        const o = document.createElement('option');
+        o.value = item.name;
+        o.dataset.c = item.c;
+        o.textContent = item.name;
+        el.appendChild(o);
+    });
+    const otherOpt = document.createElement('option');
+    otherOpt.value = 'other';
+    otherOpt.textContent = 'Other (not in list)';
+    el.appendChild(otherOpt);
+}
+
+
+
+
+function handleSubmit() {
+    const i1 = document.getElementById('inst1').value;
+    const i2 = document.getElementById('inst2').value;
+    if (!i1 || !i2) { alert('Please select an instrument for both Edge Pucks before submitting.'); return; }
+
+    // Validate section 2 required fields
+    const s2required = [
+        { name: 'site_name_1', label: 'Site Name (Edge Puck 1)' },
+        { name: 'serial_number_1', label: 'Serial Number (Edge Puck 1)' },
+        { name: 'timezone_1', label: 'Timezone (Edge Puck 1)' },
+        { name: 'site_name_2', label: 'Site Name (Edge Puck 2)' },
+        { name: 'serial_number_2', label: 'Serial Number (Edge Puck 2)' },
+        { name: 'timezone_2', label: 'Timezone (Edge Puck 2)' },
+    ];
+    for (const field of s2required) {
+        const els = document.getElementsByName(field.name);
+        const el = els.length ? els[0] : null;
+        if (!el || !el.value.trim()) {
+            alert(field.label + ' is required.');
+            if (el) el.focus();
+            return;
+        }
+    }
+
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    const fields = [
+        { name: 'firstname',          value: document.querySelector('[name=first_name]').value },
+        { name: 'lastname',           value: document.querySelector('[name=last_name]').value },
+        { name: 'jobtitle',           value: document.querySelector('[name=title]').value },
+        { name: 'company',            value: document.querySelector('[name=company]').value },
+        { name: 'email',              value: document.querySelector('[name=email]').value },
+        { name: 'phone',              value: document.querySelector('[name=phone]').value },
+        { name: 'address',            value: document.querySelector('[name=address_line1]').value },
+        { name: 'address_line2',      value: document.querySelector('[name=address_line2]').value },
+        { name: 'city',               value: document.querySelector('[name=city]').value },
+        { name: 'state',              value: document.querySelector('[name=state]').value },
+        { name: 'zip',                value: document.querySelector('[name=zip]').value },
+        { name: 'country',            value: document.querySelector('[name=country]').value },
+        { name: 'delivery_notes',     value: document.querySelector('[name=delivery_notes]').value },
+        { name: 'poc_instrument_1',   value: i1 },
+        { name: 'poc_instrument_1_other', value: document.querySelector('[name=other_instrument_1]') ? document.querySelector('[name=other_instrument_1]').value : '' },
+        { name: 'poc_instrument_1_serial_number', value: document.querySelector('[name=serial_number_1]').value },
+        { name: 'poc_site_name_1',    value: document.querySelector('[name=site_name_1]').value },
+        { name: 'poc_site_details_1', value: document.querySelector('[name=site_details_1]').value },
+        { name: 'poc_timezone_1',     value: document.querySelector('[name=timezone_1]').value },
+        { name: 'poc_instrument_2',   value: i2 },
+        { name: 'poc_instrument_2_other', value: document.querySelector('[name=other_instrument_2]') ? document.querySelector('[name=other_instrument_2]').value : '' },
+        { name: 'poc_instrument_2_serial_number', value: document.querySelector('[name=serial_number_2]').value },
+        { name: 'poc_site_name_2',    value: document.querySelector('[name=site_name_2]').value },
+        { name: 'poc_site_details_2', value: document.querySelector('[name=site_details_2]').value },
+        { name: 'poc_timezone_2',     value: document.querySelector('[name=timezone_2]').value }
+    ];
+
+    grecaptcha.enterprise.ready(function() {
+        grecaptcha.enterprise.execute('6Le6W1osAAAAAEySdjeFfrJffcwvyfL2ph1Dsxyf', {action: 'submit'}).then(function(token) {
+            fetch('/.netlify/functions/submit-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    recaptchaToken: token,
+                    formData: {
+                        formId: '157c3019-c97e-41fc-9b8c-f441065b6302',
+                        fields: fields,
+                        context: {
+                            pageUri: window.location.href,
+                            pageName: document.title,
+                            hutk: (document.cookie.match(/hubspotutk=([^;]+)/) || [])[1]
+                        }
+                    }
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('success-msg').classList.add('show');
+                btn.textContent = 'Submitted ✓';
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                btn.textContent = 'Error - Try Again';
+                btn.disabled = false;
+            });
+        });
+    });
+}
+
+
+function handleInstChange(n) {
+    const val = document.getElementById('inst'+n).value;
+    const otherWrap = document.getElementById('other_instrument_wrap_'+n);
+    const otherInput = document.getElementById('other_instrument_'+n);
+    if (val === 'other') {
+        otherWrap.style.display = 'block';
+        if (otherInput) otherInput.setAttribute('required', 'required');
+    } else {
+        otherWrap.style.display = 'none';
+        if (otherInput) otherInput.removeAttribute('required');
+    }
+}
+
+function toggleSection(n) {
+    if (n === 2 && document.getElementById('section2-wrap').classList.contains('section-locked')) return;
+    const body = document.getElementById('body' + n);
+    const chevron = document.getElementById('chevron' + n);
+    const isCollapsed = body.classList.contains('collapsed');
+    body.classList.toggle('collapsed', !isCollapsed);
+    chevron.classList.toggle('open', !isCollapsed);
+}
+
+function completeSection1() {
+    // Validate section 1 required fields
+    const s1required = [
+        { name: 'first_name', label: 'First Name' },
+        { name: 'last_name', label: 'Last Name' },
+        { name: 'title', label: 'Job Title' },
+        { name: 'company', label: 'Company' },
+        { name: 'email', label: 'Email Address' },
+        { name: 'phone', label: 'Phone Number' },
+        { name: 'address_line1', label: 'Street Address' },
+        { name: 'city', label: 'City' },
+        { name: 'state', label: 'State / Province' },
+        { name: 'zip', label: 'ZIP / Postal Code' },
+        { name: 'country', label: 'Country' },
+    ];
+    for (const field of s1required) {
+        const els = document.getElementsByName(field.name);
+        const el = els.length ? els[0] : null;
+        if (!el || !el.value.trim()) {
+            alert(field.label + ' is required.');
+            if (el) el.focus();
+            return;
+        }
+    }
+
+    // Build summary
+    const fn = document.querySelector('[name=first_name]').value.trim();
+    const ln = document.querySelector('[name=last_name]').value.trim();
+    const company = document.querySelector('[name=company]').value.trim();
+    const city = document.querySelector('[name=city]').value.trim();
+    const state = document.querySelector('[name=state]').value.trim();
+    if (!fn || !ln) { alert('Please enter your first and last name before continuing.'); return; }
+
+    // Show summary in header
+    const parts = [fn + ' ' + ln];
+    if (company) parts.push(company);
+    if (city && state) parts.push(city + ', ' + state);
+    const summary = document.getElementById('summary1');
+    summary.textContent = parts.join(' · ');
+    summary.classList.add('visible');
+
+    // Mark section 1 done, collapse it
+    document.getElementById('num1').classList.add('done');
+    document.getElementById('num1').textContent = '✓';
+    // Collapse section 1 instantly so layout settles before scroll
+    const body1 = document.getElementById('body1');
+    body1.style.transition = 'none';
+    body1.classList.add('collapsed');
+    document.getElementById('chevron1').classList.remove('open');
+
+    // Unlock and open section 2
+    const s2 = document.getElementById('section2-wrap');
+    s2.classList.remove('section-locked');
+    document.getElementById('num2').style.background = '#30444D';
+    document.getElementById('body2').classList.remove('collapsed');
+    document.getElementById('chevron2').classList.add('open');
+
+    // Scroll after layout settled, then restore animation
+    setTimeout(() => {
+        const offset = s2.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+        setTimeout(() => { body1.style.transition = ''; }, 600);
+    }, 50);
+}
+</script>
+</body>
+</html>

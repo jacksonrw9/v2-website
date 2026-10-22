@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eliminate systemic gaps behind data integrity 483s and warning letters. Replace your manual SOPs with automated, compliant data flow from your benchtop instruments directly to LIMS, MES, or QMS.">
+    <title>Phizzle - Eliminate Data Integrity Gaps Behind 483s and Warning Letters</title>
+
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41FB3KKW2T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-41FB3KKW2T');
+    </script>
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    <script>
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', window.location.pathname]);
+    window._hsq.push(['disableFormAutoCollect']);
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ===================== NAVIGATION (unchanged) ===================== */
+        nav { background: #30444D; padding: 1rem 0; position: relative; z-index: 100; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-size: 2rem; font-weight: 700; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links > li { position: relative; }
+        .nav-links a { color: #ffffff; text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; display: block; padding: 0.5rem 0; }
+        .nav-links > li > a:hover { color: #94a3b8; }
+        .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: #ffffff; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); min-width: 250px; padding: 1rem 0; opacity: 0; visibility: hidden; transition: all 0.3s ease; margin-top: 0.5rem; border: 1px solid #e2e8f0; }
+        .nav-links > li:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown li { list-style: none; }
+        .dropdown a { color: #374151; padding: 0.75rem 1.5rem; text-transform: none; font-weight: 400; font-size: 0.9rem; letter-spacing: 0; transition: background-color 0.2s ease; border-left: 3px solid transparent; }
+        .dropdown a:hover { background-color: #f8fafc; color: #436c79; border-left-color: #436c79; }
+        .request-demo { background: #da5e26 !important; color: white !important; padding: 0.5rem 1rem !important; border-radius: 6px !important; transition: background 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600 !important; font-size: 0.8rem !important; }
+        .request-demo:hover { background: #b45309 !important; color: white !important; }
+
+        .mobile-menu-toggle { display: none; background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu { position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; background: #f3f4f6; padding: 0; transition: right 0.3s ease; z-index: 1000; overflow-y: auto; box-shadow: -5px 0 15px rgba(0,0,0,0.2); }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-menu-header { display: flex; justify-content: flex-end; align-items: center; padding: 1rem 1.5rem; border-bottom: 1px solid #d1d5db; background: #ffffff; }
+        .mobile-menu-close { background: none; border: none; font-size: 1.8rem; color: #374151; cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background-color 0.3s ease, color 0.3s ease; min-width: 44px; min-height: 44px; line-height: 1; }
+        .mobile-menu-close:hover { background: #f3f4f6; color: #1f2937; }
+        .mobile-nav-links { list-style: none; padding: 1rem 0 0 0; margin: 0; }
+        .mobile-nav-links > li { border-bottom: 1px solid #d1d5db; }
+        .mobile-nav-links > li:last-child { border-bottom: none; }
+        .mobile-nav-links > li > a { display: flex; justify-content: space-between; align-items: center; color: #374151; text-decoration: none; padding: 1rem 2rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s ease; }
+        .mobile-nav-links > li > a:hover { background-color: #e5e7eb; }
+        .mobile-menu .mobile-dropdown { background: #f3f4f6 !important; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .mobile-menu .mobile-dropdown.active { max-height: 500px; }
+        .mobile-menu .mobile-dropdown li { list-style: none; }
+        .mobile-menu .mobile-dropdown a { display: block; color: #374151 !important; text-decoration: none; padding: 0.75rem 3rem; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.9rem; transition: background-color 0.3s ease; }
+        .mobile-menu .mobile-dropdown a:hover { background-color: #e5e7eb !important; }
+        .mobile-request-demo { display: block; background: #da5e26 !important; color: white !important; padding: 0.75rem 1rem !important; border-radius: 6px !important; text-align: center !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; font-weight: 600 !important; font-size: 0.9rem !important; transition: background 0.3s ease !important; text-decoration: none !important; }
+        .mobile-request-demo:hover { background: #b45309 !important; }
+        .dropdown-arrow { transition: transform 0.3s ease; }
+        .dropdown-arrow.rotated { transform: rotate(180deg); }
+
+        /* ===================== SHARED LANDING PAGE STYLES ===================== */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .container-narrow { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #436c79;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-lead {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 820px;
+            line-height: 1.7;
+        }
+
+        .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #da5e26;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Demo CTA (matches site's orange Request-a-Demo treatment) */
+        .demo-cta-wrap {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .demo-cta-wrap.center { align-items: center; }
+        .demo-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #da5e26;
+            color: #ffffff;
+            padding: 0.85rem 1.6rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-height: 44px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .demo-cta:hover { background: #b45309; transform: translateY(-1px); }
+        .demo-cta .play {
+            width: 22px; height: 22px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .demo-cta .play svg { width: 10px; height: 10px; fill: #ffffff; margin-left: 2px; }
+        .demo-cta-sub {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+        .on-dark .demo-cta-sub { color: rgba(255,255,255,0.8); }
+
+        /* Check bullets (same as homepage product-bullet-list) */
+        .product-bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.1rem; }
+        .product-bullet-list li { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .product-bullet-list li .bullet-icon { flex-shrink: 0; width: 22px; height: 22px; background: #436c79; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+        .product-bullet-list li .bullet-icon svg { width: 12px; height: 12px; }
+        .product-bullet-list li .bullet-text { font-size: 1.02rem; color: #374151; line-height: 1.6; }
+
+        /* ===================== HERO ===================== */
+        .lp-hero {
+            background: linear-gradient(rgba(48,68,77,0.78), rgba(48,68,77,0.78)), url('https://res.cloudinary.com/dqiggfeuq/image/upload/q_auto/f_auto/v1775508426/iStock-1346675526_kfjubl.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+        }
+        .lp-hero .hero-container {
+            max-width: 960px; margin: 0 auto; padding: 0 2rem; width: 100%;
+            text-align: center;
+        }
+        .hero-text-box h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+            margin-bottom: 1.25rem;
+        }
+        .hero-text-box p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #c8efe6;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* ===================== PARTNER CAROUSEL (from homepage) ===================== */
+        .partner-strip { background: #f8fafc; padding: 3rem 0; overflow: hidden; white-space: nowrap; position: relative; width: 100%; }
+        .partner-carousel-track { display: inline-flex; animation: scroll 40s linear infinite; }
+        .partner-logo-item { flex: 0 0 auto; height: 96px; width: 240px; margin: 0 2rem; display: flex; align-items: center; justify-content: center; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .partner-logo-item:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+        .partner-logo-item img { max-height: 72px; max-width: 192px; object-fit: contain; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ===================== PROBLEM ===================== */
+        .problem-section { background: #ffffff; padding: 5rem 0; }
+        .gap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .gap-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 4px solid #da5e26;
+            border-radius: 12px;
+            padding: 2rem 1.75rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .gap-num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #da5e26;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .gap-icon {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: #e0eaed;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gap-icon svg { width: 26px; height: 26px; stroke: #436c79; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .gap-head { display: flex; align-items: center; gap: 1rem; }
+        .gap-icon { flex-shrink: 0; }
+        .gap-card h3 { font-size: 1.4rem; font-weight: 600; color: #1f2937; line-height: 1.3; }
+
+        .fda-quote {
+            background: #f8fafc;
+            border-left: 5px solid #436c79;
+            border-radius: 0 12px 12px 0;
+            padding: 2rem 2.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .fda-quote .quote-mark {
+            font-size: 4.5rem;
+            line-height: 1;
+            color: #436c79;
+            font-weight: 800;
+            font-family: Georgia, serif;
+        }
+        .fda-quote p { font-size: 1.25rem; color: #1f2937; line-height: 1.55; }
+        .fda-quote p strong, .fda-quote p em { color: #436c79; }
+
+        .note-ref { font-size: 0.65em; line-height: 0; margin-left: 0.1em; color: #436c79; font-weight: 700; }
+        .endnotes { background: #ffffff; padding: 2rem 0; border-top: 1px solid #e2e8f0; }
+        .endnotes h2 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 0.5rem; }
+        .endnotes ol { padding-left: 1.1rem; margin: 0; }
+        .endnotes li { font-size: 0.75rem; color: #94a3b8; line-height: 1.6; max-width: 1100px; }
+
+        /* ===================== SOLUTION ===================== */
+        .solution-section { background: #e0eaed; padding: 5rem 0; }
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .solution-grid .section-lead { color: #374151; margin-bottom: 2rem; }
+        .solution-grid img { width: 100%; height: auto; max-height: 480px; object-fit: contain; display: block; }
+
+        /* ===================== PROOF / CASE STUDY ===================== */
+        .proof-section { background: #30444D; padding: 5rem 0; color: #ffffff; }
+        .proof-section .eyebrow { color: #AEE6D9; }
+        .proof-section h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: #ffffff;
+            max-width: 1000px;
+            margin-bottom: 3rem;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .stat {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 1.75rem 1.5rem;
+        }
+        .stat-value { font-size: 2.6rem; font-weight: 800; color: #AEE6D9; line-height: 1.1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.95rem; color: #cbd5e1; line-height: 1.5; }
+        .proof-body {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .proof-body h3 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 1.25rem; }
+        .proof-section .product-bullet-list li .bullet-icon { background: #AEE6D9; }
+        .proof-section .product-bullet-list li .bullet-icon polyline { stroke: #30444D; }
+        .proof-section .product-bullet-list li .bullet-text { color: #e2e8f0; }
+        .zero-card {
+            background: linear-gradient(to left, #c8efe6, #AEE6D9, #8dd4c7);
+            color: #1f2937;
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .zero-card .zero { font-size: 3.5rem; font-weight: 800; color: #30444D; line-height: 1; margin-bottom: 0.75rem; }
+        .zero-card p { font-size: 1.05rem; font-weight: 600; color: #30444D; line-height: 1.5; }
+        .zero-card a { color: #30444D; font-weight: 700; text-decoration: underline; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* ===================== 3 STEPS ===================== */
+        .steps-section { background: #ffffff; padding: 5rem 0 0 0; }
+        .steps-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .steps-header .section-title { margin-bottom: 0; }
+        .steps-overview { margin: 0 auto 4rem auto; max-width: 1336px; }
+        .steps-overview-cta { display: flex; justify-content: flex-start; margin-top: 2rem; }
+        .steps-overview img { width: 100%; height: auto; display: block; border-radius: 12px; }
+        .step-band { padding: 5rem 4rem; }
+        .step-band.tint { background: #e0eaed; }
+        .step-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .step-row.reverse .step-media { order: 2; }
+        .step-row.reverse .step-copy { order: 1; }
+        .step-media img { width: 100%; height: 420px; object-fit: contain; border-radius: 12px; display: block; }
+        .step-media img.cover { object-fit: cover; }
+        .step-label { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1rem; }
+        .step-badge {
+            background: #436c79; color: #ffffff;
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700; flex-shrink: 0;
+        }
+        .step-copy h3 { font-size: 2.2rem; font-weight: 700; color: #436c79; line-height: 1.2; }
+        .step-copy .step-intro { font-size: 1.1rem; color: #1f2937; font-weight: 500; line-height: 1.6; margin-bottom: 1.75rem; }
+
+
+        /* Instrument carousel (from homepage hero slide 3) */
+        .inst-panel {
+            background: #1a2f38;
+            border-radius: 12px;
+            width: 100%;
+            height: 420px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .step-media { min-width: 0; }
+        .inst-lane { width: 100%; overflow: hidden; white-space: nowrap; }
+        .inst-row { display: inline-flex; gap: 0.75rem; }
+        .inst-item {
+            flex: 0 0 auto;
+            width: 112px; height: 80px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            padding: 0.6rem;
+        }
+        .inst-item img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .inst-left { animation: inst-scroll-left 30s linear infinite; }
+        .inst-right { animation: inst-scroll-right 30s linear infinite; }
+        @keyframes inst-scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } }
+        @keyframes inst-scroll-right { 0% { transform: translateX(-33.33%); } 100% { transform: translateX(0); } }
+
+        /* ===================== FINAL CTA (matches homepage Request a Demo block) ===================== */
+        .final-cta { background: #e0eaed; padding: 0 0 4rem 0; }
+        .steps-section .step-band:last-child { padding-bottom: 2.5rem; }
+        .final-cta-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .final-cta-card h2 { font-size: 2.2rem; font-weight: 600; color: #436c79; line-height: 1.2; margin-bottom: 1.25rem; }
+        .final-cta-card p { font-size: 1rem; color: #64748b; line-height: 1.6; margin-bottom: 1.75rem; }
+        .final-cta-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 12px; }
+
+        /* ===================== FOOTER (unchanged) ===================== */
+        .footer { background: #1e293b; color: #e2e8f0; padding: 1.5rem 0; }
+        .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 2fr; gap: 3rem; margin-bottom: 3rem; }
+        .footer-brand h3 { font-size: 1.8rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem; display: flex; align-items: center; }
+        .footer-brand p { color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem; max-width: 300px; }
+        .footer-section h4 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { color: #94a3b8; text-decoration: none; transition: color 0.3s ease; font-size: 0.9rem; min-height: 44px; display: inline-block; padding: 0.25rem 0; }
+        .footer-section ul li a:hover { color: #ffffff; }
+        .email-signup { margin-top: 0; }
+        .email-signup h5 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .email-form { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-direction: column; }
+        .email-input { width: 100%; padding: 0.75rem; border: 1px solid #475569; border-radius: 6px; background: #334155; color: #ffffff; font-size: 0.9rem; transition: border-color 0.3s ease; margin-bottom: 0.5rem; min-height: 44px; }
+        .email-input::placeholder { color: #94a3b8; }
+        .email-input:focus { outline: none; border-color: #436c79; }
+        .email-submit { width: 100%; padding: 0.75rem 1.25rem; background: #436c79; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.3s ease; font-size: 0.9rem; min-height: 44px; }
+        .email-submit:hover { background: #30444d; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-link { width: 50px; height: 50px; background: transparent; border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #94a3b8; text-decoration: none; transition: all 0.3s ease; font-size: 1.4rem; }
+        .social-link:hover { transform: translateY(-2px); }
+        .social-link.linkedin { border-color: #ffffff; color: #ffffff; }
+        .social-link.linkedin:hover { background: #0077b5; color: #ffffff; }
+        .social-link.facebook { border-color: #ffffff; color: #ffffff; }
+        .social-link.facebook:hover { background: #1877f2; color: #ffffff; }
+        .social-link.youtube { border-color: #ffffff; color: #ffffff; }
+        .social-link.youtube:hover { background: #ff0000; color: #ffffff; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: #64748b; font-size: 0.9rem; }
+        .footer-bottom-links { display: flex; gap: 2rem; }
+        .footer-bottom-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; min-height: 44px; display: inline-flex; align-items: center; }
+        .footer-bottom-links a:hover { color: #94a3b8; }
+
+        .grecaptcha-badge { visibility: hidden; }
+
+        /* ===================== SCROLL REVEAL (from homepage) ===================== */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s ease, transform 0.8s ease; transition-delay: 0.2s; }
+        .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* ===================== NAV BREAKPOINTS (unchanged) ===================== */
+        @media (max-width: 1600px) { .nav-container { padding: 0 1.5rem; } }
+        @media (max-width: 1500px) and (min-width: 1351px) { .nav-links { gap: 2rem; } .nav-links a { font-size: 0.9rem; } }
+        @media (max-width: 1350px) and (min-width: 1301px) { .nav-links { gap: 1.8rem; } .nav-links a { font-size: 0.9rem; letter-spacing: 0.4px; } .request-demo { padding: 0.45rem 0.9rem !important; font-size: 0.75rem !important; } }
+        @media (max-width: 1300px) and (min-width: 1201px) { .nav-links { gap: 1.6rem; } .nav-links a { font-size: 0.87rem; letter-spacing: 0.35px; } .request-demo { padding: 0.42rem 0.85rem !important; font-size: 0.72rem !important; } }
+        @media (max-width: 1200px) and (min-width: 1101px) { .nav-links { gap: 1.4rem; } .nav-links a { font-size: 0.84rem; letter-spacing: 0.3px; } .request-demo { padding: 0.4rem 0.8rem !important; font-size: 0.7rem !important; } .logo { font-size: 1.9rem; } .logo img { height: 30px; } }
+        @media (max-width: 1100px) and (min-width: 1026px) { .nav-links { gap: 1.2rem; } .nav-links a { font-size: 0.8rem; letter-spacing: 0.2px; padding: 0.4rem 0; } .request-demo { padding: 0.35rem 0.7rem !important; font-size: 0.65rem !important; letter-spacing: 0.2px !important; } .logo { font-size: 1.8rem; } .logo img { height: 28px; } .dropdown { min-width: 200px; padding: 0.7rem 0; } .dropdown a { padding: 0.5rem 1rem; font-size: 0.8rem; } }
+
+        @media (max-width: 1025px) {
+            .nav-links { display: none; }
+            .mobile-menu-toggle { display: block; }
+            .logo { font-size: 1.6rem; }
+            .logo img { height: 24px; }
+            .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-brand { grid-column: 1 / -1; }
+            .email-signup { grid-column: 1 / -1; margin-top: 2rem; }
+            .partner-logo-item { width: 180px; margin: 0 1rem; }
+
+            .gap-grid { grid-template-columns: 1fr; }
+            .solution-grid, .proof-body, .final-cta-card { grid-template-columns: 1fr; gap: 2.5rem; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .step-band { padding: 3.5rem 2rem; }
+            .step-row, .step-row.reverse { grid-template-columns: 1fr; gap: 2rem; }
+            .step-row.reverse .step-media, .step-row.reverse .step-copy { order: unset; }
+            .step-media img { height: 260px; }
+            .inst-panel { height: 260px; gap: 0.5rem; }
+            .inst-row { gap: 0.5rem; }
+            .inst-item { width: 76px; height: 54px; padding: 0.35rem; border-radius: 8px; }
+        }
+
+        @media (max-width: 768px) {
+            .logo img { height: 28px; }
+            .hero-text-box h1 { font-size: 1.85rem; }
+            .hero-text-box p { font-size: 1rem; }
+            .section-title { font-size: 1.8rem; }
+            .proof-section h2 { font-size: 1.6rem; }
+            .step-copy h3 { font-size: 1.6rem; }
+            .fda-quote { grid-template-columns: 1fr; padding: 1.75rem; gap: 0.5rem; }
+            .fda-quote .quote-mark { font-size: 3rem; }
+            .fda-quote p { font-size: 1.1rem; }
+            .final-cta-card { padding: 2rem; }
+            .final-cta-card h2 { font-size: 1.7rem; }
+            .final-cta-card img { height: 220px; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; gap: 1rem; }
+            .footer-bottom-links { gap: 1rem; }
+            .social-link { width: 44px; height: 44px; font-size: 1.2rem; }
+            .partner-logo-item { width: 144px; height: 72px; margin: 0 0.5rem; }
+            .partner-logo-item img { max-height: 48px; max-width: 120px; }
+            .product-bullet-list li .bullet-text { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container { padding: 0 1rem; }
+            .container, .container-narrow, .lp-hero .hero-container { padding: 0 1rem; }
+            .lp-hero { padding: 3rem 0; min-height: auto; }
+            .hero-text-box h1 { font-size: 1.55rem; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .step-band { padding: 3rem 1rem; }
+            .demo-cta { font-size: 0.82rem; padding: 0.8rem 1.2rem; }
+            .partner-logo-item { width: 120px; height: 60px; }
+            .partner-logo-item img { max-height: 36px; max-width: 96px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .reveal-left, .reveal-right { transition: none; opacity: 1; transform: none; }
+            .partner-carousel-track, .inst-left, .inst-right { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION (logo only) ===================== -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 32px; width: auto; display: block;">
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="lp-hero">
+        <div class="hero-container">
+            <div class="hero-text-box">
+                <h1>Eliminate Systemic Gaps Behind Data Integrity 483s and Warning Letters</h1>
+                <p>Replace your manual SOPs with automated, compliant data flow from your benchtop instruments directly to LIMS, MES, or QMS.</p>
+                <div class="demo-cta-wrap center on-dark">
+                    <a href="demo-video.html" class="demo-cta">
+                        <span class="play"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span>
+                        Watch the 90-Second Demo
+                    </a>
+                    <span class="demo-cta-sub">Instant Video Playback &middot; No Pitch</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROBLEM ===================== -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="reveal">
+                <p class="eyebrow">The Problem</p>
+                <h2 class="section-title">SOPs and Training Don’t Fix Data Integrity Gaps</h2>
+                <p class="section-lead">Manual QC SOPs define compliant workflows, but manual execution cannot enforce them. These systemic data integrity gaps show up repeatedly in 483s and warning letters as:</p>
+            </div>
+
+            <div class="gap-grid">
+                <div class="gap-card reveal">
+                    <span class="gap-num">Gap 01</span>
+                    <div class="gap-head">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><line x1="12" y1="16.5" x2="12" y2="16.6"/></svg>
+                        </div>
+                        <h3>Uncaught human errors</h3>
+                    </div>
+                </div>
+                <div class="gap-card reveal">
+                    <span class="gap-num">Gap 02</span>
+                    <div class="gap-head">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24"><polyline points="4,6 7,9 11,5"/><line x1="14" y1="7" x2="20" y2="7"/><rect x="4" y="13" width="6" height="6" rx="1" stroke-dasharray="2 2"/><line x1="14" y1="16" x2="20" y2="16"/></svg>
+                        </div>
+                        <h3>Missed workflow steps</h3>
+                    </div>
+                </div>
+                <div class="gap-card reveal">
+                    <span class="gap-num">Gap 03</span>
+                    <div class="gap-head">
+                        <div class="gap-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
+                        </div>
+                        <h3>Manual data overrides</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fda-quote reveal">
+                <span class="quote-mark">“</span>
+                <p>As the FDA has repeatedly emphasized across recent warning letters, <em>“procedure updates and training alone won’t fix systemic data integrity failures.”</em><sup class="note-ref">1</sup></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SOLUTION ===================== -->
+    <section class="solution-section">
+        <div class="container">
+            <div class="solution-grid">
+                <div class="reveal-left">
+                    <p class="eyebrow">The Fix</p>
+                    <h2 class="section-title">Enforce Compliance Without Relying on Human Perfection</h2>
+                    <p class="section-lead">Your team can securely capture and deliver instrument data directly to LIMS, MES, or QMS, while enforcing 21 CFR Part 11 compliance and ALCOA+ frameworks by default.</p>
+                    <div class="demo-cta-wrap">
+                        <a href="demo-video.html" class="demo-cta">
+                            <span class="play"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span>
+                            Watch the 90-Second Demo
+                        </a>
+                        <span class="demo-cta-sub">Instant Video Playback &middot; No Pitch</span>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1790367427/Laptop-with-UI_1_uyvnye.png" alt="Phizzle Connected Plant interface">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROOF ===================== -->
+    <section class="proof-section">
+        <div class="container">
+            <div class="reveal">
+                <p class="eyebrow">Proven at Enterprise Scale</p>
+                <h2>Top-5 Global Pharma Cuts 80% of APC-Related Failure Reports Across 3 Sites and Saves $1.5M in Labor Costs Annually</h2>
+            </div>
+
+            <div class="stat-grid reveal">
+                <div class="stat">
+                    <div class="stat-value">80%</div>
+                    <div class="stat-label">Fewer APC-related failure reports</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$1.5M</div>
+                    <div class="stat-label">Labor costs saved annually</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$300K</div>
+                    <div class="stat-label">Paper costs saved per year</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">300+</div>
+                    <div class="stat-label">Instruments connected</div>
+                </div>
+            </div>
+
+            <div class="proof-body">
+                <div class="reveal-left">
+                    <h3>How they did it:</h3>
+                    <ul class="product-bullet-list">
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Eliminating manual data handling errors and wasted QA review hours</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Automating 21 CFR Part 11 controls, audit logging, and version control</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Digitizing QC data and audit trails for friction-free compliance</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zero-card reveal-right">
+                    <div class="zero">0</div>
+                    <p>Support tickets over the past 13 months</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== 3 STEPS ===================== -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="steps-header reveal">
+                <div>
+                    <p class="eyebrow">How It Works</p>
+                    <h2 class="section-title">3 Steps to Automating Compliant QC Workflows</h2>
+                </div>
+            </div>
+            <div class="steps-overview reveal">
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1791568767/Untitled_design_2_wytkzp.png" alt="Connect, capture, and integrate: Phizzle's 3-step workflow from instruments to LIMS, MES, or QMS">
+                <div class="steps-overview-cta">
+                    <div class="demo-cta-wrap">
+                        <a href="demo-video.html" class="demo-cta">
+                            <span class="play"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span>
+                            Watch the 90-Second Demo
+                        </a>
+                        <span class="demo-cta-sub">Instant Video Playback &middot; No Pitch</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="step-band tint">
+            <div class="step-row">
+                <div class="step-media reveal-left">
+                    <div class="inst-panel" role="img" aria-label="Examples of supported instruments: particle counters, balances, microscopes, analyzers, and more">
+                <!-- Row 1 - scrolls left -->
+                <div class="inst-lane">
+                    <div class="inst-row inst-left">
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976020/9310-02_01_2_bm6koj.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976018/3100EthernetOPT_small-2_3_hwcf9m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/CI-154_left_small-2_2_ovhoda.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976021/CI-770-Cut-Out_SM_3_j2eccr.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435975/Lasair-III-wifi-Front_1_hjm82e.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/lasair-pro-pic-1_1_rx1s50.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769099599/b_Apex-P3_1_kzha6i.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/p-230712-01005_1_sgra2m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435980/solair-lighthouse_ushc6o.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/Met-One-3400_viflm2.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976020/9310-02_01_2_bm6koj.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976018/3100EthernetOPT_small-2_3_hwcf9m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/CI-154_left_small-2_2_ovhoda.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976021/CI-770-Cut-Out_SM_3_j2eccr.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435975/Lasair-III-wifi-Front_1_hjm82e.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/lasair-pro-pic-1_1_rx1s50.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769099599/b_Apex-P3_1_kzha6i.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/p-230712-01005_1_sgra2m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435980/solair-lighthouse_ushc6o.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/Met-One-3400_viflm2.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976020/9310-02_01_2_bm6koj.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976018/3100EthernetOPT_small-2_3_hwcf9m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/CI-154_left_small-2_2_ovhoda.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976021/CI-770-Cut-Out_SM_3_j2eccr.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435975/Lasair-III-wifi-Front_1_hjm82e.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/lasair-pro-pic-1_1_rx1s50.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769099599/b_Apex-P3_1_kzha6i.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/p-230712-01005_1_sgra2m.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435980/solair-lighthouse_ushc6o.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766435976/Met-One-3400_viflm2.png"></div>
+                    </div>
+                </div>
+                <!-- Row 2 - scrolls right -->
+                <div class="inst-lane">
+                    <div class="inst-row inst-right">
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/30355411_2_urbuti.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976029/mettler-toledo-mr4002a-precision-balance-4200-g-x-0.01-g-internal-calibration-ntep__75427_2_n9rwut.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534889/sartorius-mce2202s-2s00-0-cubis-ii-precision-balance-2200-g-x-10-mg-no-draft-shield-100-to-240-vac-50-60-hz-3974242_1_gw7xpm.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/BCE223-1S-2T_2_rqheoi.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534882/download_2_1_hbdtuv.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976023/download_5_gunngw.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774564452/nucleocounter-nc-200-right-600x500_acyh08.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769101028/Biochemistry-Analyzer-Facing-Front_1_q0vx8t.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/EVG_6200_Series_iu1gte.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Heidelberg_DWL_66_inespm.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/30355411_2_urbuti.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976029/mettler-toledo-mr4002a-precision-balance-4200-g-x-0.01-g-internal-calibration-ntep__75427_2_n9rwut.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534889/sartorius-mce2202s-2s00-0-cubis-ii-precision-balance-2200-g-x-10-mg-no-draft-shield-100-to-240-vac-50-60-hz-3974242_1_gw7xpm.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/BCE223-1S-2T_2_rqheoi.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534882/download_2_1_hbdtuv.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976023/download_5_gunngw.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774564452/nucleocounter-nc-200-right-600x500_acyh08.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769101028/Biochemistry-Analyzer-Facing-Front_1_q0vx8t.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/EVG_6200_Series_iu1gte.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Heidelberg_DWL_66_inespm.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/30355411_2_urbuti.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976029/mettler-toledo-mr4002a-precision-balance-4200-g-x-0.01-g-internal-calibration-ntep__75427_2_n9rwut.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534889/sartorius-mce2202s-2s00-0-cubis-ii-precision-balance-2200-g-x-10-mg-no-draft-shield-100-to-240-vac-50-60-hz-3974242_1_gw7xpm.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/BCE223-1S-2T_2_rqheoi.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1766534882/download_2_1_hbdtuv.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976023/download_5_gunngw.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774564452/nucleocounter-nc-200-right-600x500_acyh08.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1769101028/Biochemistry-Analyzer-Facing-Front_1_q0vx8t.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/EVG_6200_Series_iu1gte.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Heidelberg_DWL_66_inespm.png"></div>
+                    </div>
+                </div>
+                <!-- Row 3 - scrolls left -->
+                <div class="inst-lane">
+                    <div class="inst-row inst-left">
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767893251/EquipmentThumbImage_7441_16536502344775870_qjdsaq.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Agilent_5500_SPM_kvbgzu.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541929/Zeiss_LSM_Series_msnqe8.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_BX_Series_x2ezhc.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_CKX53_vbyeml.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_IX53_zqhlov.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543756/Olympus_DSX_Series_ujlprh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543778/Nikon_SMZ_Series_rkltzo.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Leica_DMI_Series_cvxuck.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541927/Thermo_Talos_Arctica_vejjbz.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767893251/EquipmentThumbImage_7441_16536502344775870_qjdsaq.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Agilent_5500_SPM_kvbgzu.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541929/Zeiss_LSM_Series_msnqe8.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_BX_Series_x2ezhc.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_CKX53_vbyeml.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_IX53_zqhlov.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543756/Olympus_DSX_Series_ujlprh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543778/Nikon_SMZ_Series_rkltzo.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Leica_DMI_Series_cvxuck.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541927/Thermo_Talos_Arctica_vejjbz.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767893251/EquipmentThumbImage_7441_16536502344775870_qjdsaq.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Agilent_5500_SPM_kvbgzu.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541929/Zeiss_LSM_Series_msnqe8.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_BX_Series_x2ezhc.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_CKX53_vbyeml.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Olympus_IX53_zqhlov.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543756/Olympus_DSX_Series_ujlprh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778543778/Nikon_SMZ_Series_rkltzo.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541926/Leica_DMI_Series_cvxuck.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541927/Thermo_Talos_Arctica_vejjbz.png"></div>
+                    </div>
+                </div>
+                <!-- Row 4 - scrolls right -->
+                <div class="inst-lane">
+                    <div class="inst-row inst-right">
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774560835/orion_pstar2150_pc215_meter-wstand_front_l_fqyw4g.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767208232/mettler-toledo_seven_excellence_n_2_c7wxmg.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767901056/mettler_r4_front_l_1_jjpy5y.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Keithley_4200-SCS_seojil.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/AIT_CMT_SR_Series_frzh1u.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541928/Zeiss_Axioscan_7_rorsz5.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_DektakXT_tcgxrh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_D8_Series.061_itxqz9.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Bruker_D2_Phaser_2nd_Gen_tabdol.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/636216769964211710NV_Original_file_1_1_y79gfp.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774560835/orion_pstar2150_pc215_meter-wstand_front_l_fqyw4g.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767208232/mettler-toledo_seven_excellence_n_2_c7wxmg.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767901056/mettler_r4_front_l_1_jjpy5y.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Keithley_4200-SCS_seojil.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/AIT_CMT_SR_Series_frzh1u.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541928/Zeiss_Axioscan_7_rorsz5.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_DektakXT_tcgxrh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_D8_Series.061_itxqz9.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Bruker_D2_Phaser_2nd_Gen_tabdol.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/636216769964211710NV_Original_file_1_1_y79gfp.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774560835/orion_pstar2150_pc215_meter-wstand_front_l_fqyw4g.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767208232/mettler-toledo_seven_excellence_n_2_c7wxmg.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1767901056/mettler_r4_front_l_1_jjpy5y.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Keithley_4200-SCS_seojil.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/AIT_CMT_SR_Series_frzh1u.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541928/Zeiss_Axioscan_7_rorsz5.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_DektakXT_tcgxrh.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541925/Bruker_D8_Series.061_itxqz9.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1778541924/Bruker_D2_Phaser_2nd_Gen_tabdol.png"></div>
+                        <div class="inst-item"><img alt="" loading="lazy" src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1765976019/636216769964211710NV_Original_file_1_1_y79gfp.png"></div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+                <div class="step-copy reveal-right">
+                    <div class="step-label">
+                        <span class="step-badge">1</span>
+                        <h3>Connect Scientific Instruments</h3>
+                    </div>
+                    <p class="step-intro">Unlike custom middleware or legacy LIMS drivers that require endless point-to-point setup, Phizzle offers one standardized onboarding process that connects 411+ instrument types directly to your LIMS, MES, or QMS.</p>
+                    <ul class="product-bullet-list">
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Plugs directly into benchtop instruments and workstation PCs via USB, serial, or Ethernet</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Only the Phizzle Edge Puck™ sits on the network, air-gapping instruments</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text"><strong>Zero IT headache:</strong> Deploys seamlessly without adding workload to your IT team outside of learning a single, standardized onboarding process</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-band">
+            <div class="step-row reverse">
+                <div class="step-media reveal-right">
+                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1790367427/Laptop-with-UI_1_uyvnye.png" alt="Connected Plant capturing instrument results">
+                </div>
+                <div class="step-copy reveal-left">
+                    <div class="step-label">
+                        <span class="step-badge">2</span>
+                        <h3>Capture Every Result Automatically</h3>
+                    </div>
+                    <p class="step-intro">Phizzle’s Connected Plant™ captures and protects native data files as soon as they’re created.</p>
+                    <ul class="product-bullet-list">
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Verifies each file with SHA-256 checksums to prove data integrity in transit, satisfying ALCOA+ audit requirements automatically</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Enable review-by-exception QA workflows so your team only reviews flagged exceptions</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Buffers data during network outages</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-band tint">
+            <div class="step-row">
+                <div class="step-media reveal-left">
+                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1774458333/image_83_ofkibj.png" alt="Integration with LIMS, MES, and QMS">
+                </div>
+                <div class="step-copy reveal-right">
+                    <div class="step-label">
+                        <span class="step-badge">3</span>
+                        <h3>Integrate With Systems of Record</h3>
+                    </div>
+                    <p class="step-intro">Populate your sample results directly into associated tables in LIMS, MES, or QMS.</p>
+                    <ul class="product-bullet-list">
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Eliminate manual transfer errors, in-transit data alterations, and 2nd-person data entry verification for your team</span>
+                        </li>
+                        <li>
+                            <span class="bullet-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="bullet-text">Accelerate your audit prep by equipping your QA team with queryable, version-controlled records and audit trails</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FINAL CTA ===================== -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="final-cta-card reveal">
+                <div>
+                    <h2>Ready to See Phizzle in Action?</h2>
+                    <p>Watch our demo video to see how Phizzle automates data handling and data integrity workflows in under 2 minutes.</p>
+                    <div class="demo-cta-wrap">
+                        <a href="demo-video.html" class="demo-cta">
+                            <span class="play"><svg viewBox="0 0 10 10"><polygon points="1,0 10,5 1,10"/></svg></span>
+                            Watch the 90-Second Demo
+                        </a>
+                        <span class="demo-cta-sub">Instant Video Playback &middot; No Pitch</span>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757288728/iStock-1219894389_1_gsxyor.png" alt="Scientific workflows">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== NOTES ===================== -->
+    <section class="endnotes">
+        <div class="container">
+            <h2>Notes</h2>
+            <ol>
+                <li>US Food and Drug Administration, warning letters to CareFusion 213 LLC, April 30, 2026; Sato Pharmaceutical Co., May 18, 2026; Genzyme Ireland Ltd., June 22, 2026 (CBER 26-728681); Almon Healthcare Private Limited, July 13, 2026; Dabur India Ltd., July 24, 2026; and Jabil Inc., August 27, 2026. The Genzyme Ireland and Dabur India letters cite data integrity failures; the others concern investigations, supplier qualification, and quality systems.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER (copyright + legal only) ===================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Phizzle. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* ---------- Demo button tracking ---------- */
+        document.querySelectorAll('.demo-cta').forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+                if (typeof gtag === 'function') gtag('event', 'demo_video_click', { page: 'data-integrity', position: i + 1 });
+            });
+        });
+
+        /* ---------- Scroll reveal ---------- */
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealEls.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
