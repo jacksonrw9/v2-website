@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch Phizzle capture benchtop instrument data, verify it, and deliver it directly to LIMS, MES, or QMS with 21 CFR Part 11 controls built in.">
+    <title>Phizzle - Watch the 90-Second Demo</title>
+
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41FB3KKW2T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-41FB3KKW2T');
+    </script>
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    <script>
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', window.location.pathname]);
+    window._hsq.push(['disableFormAutoCollect']);
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        /* ===================== NAVIGATION (logo only) ===================== */
+        nav { background: #30444D; padding: 1rem 0; position: relative; z-index: 100; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+
+        /* ===================== VIDEO HERO ===================== */
+        .video-hero {
+            background: linear-gradient(rgba(48,68,77,0.78), rgba(48,68,77,0.78)), url('https://res.cloudinary.com/dqiggfeuq/image/upload/q_auto/f_auto/v1775508426/iStock-1346675526_kfjubl.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 3.5rem 0 4.5rem 0;
+        }
+        .video-container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+        .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #AEE6D9;
+            margin-bottom: 0.75rem;
+        }
+        .video-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+        }
+        .video-hero .sub {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #c8efe6;
+            line-height: 1.6;
+            max-width: 760px;
+            margin: 0 auto 2.5rem auto;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+        }
+
+        .player {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #1a2f38;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .player video { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #1a2f38; }
+
+        /* Clickable looping preview clip */
+        .thumb {
+            position: absolute; inset: 0;
+            border: none; padding: 0; margin: 0;
+            background: #1a2f38;
+            cursor: pointer;
+            display: block;
+            width: 100%; height: 100%;
+            font-family: inherit;
+        }
+        .thumb video { pointer-events: none; object-fit: cover; }
+        .thumb::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: rgba(26,47,56,0.35);
+            transition: background 0.3s ease;
+        }
+        .thumb:hover::after { background: rgba(26,47,56,0.2); }
+        .thumb-overlay {
+            position: absolute; inset: 0; z-index: 2;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 1rem;
+        }
+        .play-circle {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: #da5e26;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+        .thumb:hover .play-circle { transform: scale(1.06); background: #b45309; }
+        .play-circle svg { width: 34px; height: 34px; fill: #ffffff; margin-left: 6px; }
+        .thumb-label {
+            color: #ffffff;
+            font-size: 1rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+        }
+        .thumb.hidden { display: none; }
+        #demoVideo { visibility: hidden; }
+        #demoVideo.active { visibility: visible; }
+
+        /* ===================== NEXT STEP ===================== */
+        .next-step { background: #e0eaed; padding: 4rem 0; }
+        .next-card {
+            background: #ffffff;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            max-width: 1000px;
+            margin: 0 2rem;
+            text-align: center;
+        }
+        @media (min-width: 1064px) { .next-card { margin: 0 auto; } }
+        .next-card h2 { font-size: 2.2rem; font-weight: 600; color: #436c79; line-height: 1.2; margin-bottom: 1rem; }
+        .next-card p { font-size: 1.1rem; color: #64748b; line-height: 1.6; max-width: 640px; margin: 0 auto 2rem auto; }
+        .cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.85rem 1.6rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-height: 44px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary { background: #da5e26; color: #ffffff; border: none; }
+        .btn-primary:hover { background: #b45309; transform: translateY(-1px); }
+        .btn-secondary { background: transparent; color: #436c79; border: 2px solid #436c79; }
+        .btn-secondary:hover { background: #436c79; color: #ffffff; }
+
+        /* ===================== END-OF-VIDEO POPUP ===================== */
+        .end-modal {
+            position: fixed; inset: 0; z-index: 2000;
+            background: rgba(15, 23, 42, 0.75);
+            display: flex; align-items: center; justify-content: center;
+            padding: 1.5rem;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .end-modal.active { opacity: 1; visibility: visible; }
+        .end-card {
+            position: relative;
+            background: #ffffff;
+            border-radius: 20px;
+            border-top: 6px solid #da5e26;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            max-width: 560px; width: 100%;
+            padding: 3rem 2.5rem 2.5rem;
+            text-align: center;
+            transform: translateY(16px);
+            transition: transform 0.3s ease;
+        }
+        .end-modal.active .end-card { transform: translateY(0); }
+        .end-close {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: none; border: none; cursor: pointer;
+            font-size: 1.8rem; line-height: 1; color: #64748b;
+            min-width: 44px; min-height: 44px; border-radius: 50%;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .end-close:hover { background: #f1f5f9; color: #1f2937; }
+        .end-card h2 { font-size: 1.9rem; font-weight: 600; color: #436c79; line-height: 1.2; margin-bottom: 0.9rem; }
+        .end-card p { font-size: 1.05rem; color: #64748b; line-height: 1.6; margin-bottom: 1.75rem; }
+        @media (max-width: 480px) {
+            .end-card { padding: 2.5rem 1.5rem 1.75rem; }
+            .end-card h2 { font-size: 1.5rem; }
+        }
+
+        /* ===================== FOOTER ===================== */
+        .footer { background: #1e293b; padding: 1.5rem 0; }
+        .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: #64748b; font-size: 0.9rem; }
+        .footer-bottom-links { display: flex; gap: 2rem; }
+        .footer-bottom-links a { color: #64748b; text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; min-height: 44px; display: inline-flex; align-items: center; }
+        .footer-bottom-links a:hover { color: #94a3b8; }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 1025px) {
+        }
+        @media (max-width: 768px) {
+            .video-hero { padding: 2.5rem 0 3rem 0; }
+            .video-hero h1 { font-size: 1.85rem; }
+            .video-hero h1 { margin-bottom: 1.75rem; }
+            .next-card h2 { font-size: 1.7rem; }
+            .next-card { padding: 2rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-bottom-links { gap: 1rem; }
+            .play-circle { width: 72px; height: 72px; }
+            .play-circle svg { width: 26px; height: 26px; margin-left: 4px; }
+            .thumb-label { font-size: 0.85rem; }
+        }
+        @media (max-width: 480px) {
+            .nav-container, .video-container, .footer-container { padding: 0 1rem; }
+            .next-card { margin: 0 1rem; padding: 1.5rem; }
+            .video-hero h1 { font-size: 1.55rem; }
+            .btn-primary, .btn-secondary { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION (logo only) ===================== -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 32px; width: auto; display: block;">
+            </a>
+        </div>
+    </nav>
+
+    <!-- ===================== VIDEO ===================== -->
+    <section class="video-hero">
+        <div class="video-container">
+            <p class="eyebrow">90-Second Demo</p>
+            <h1>See Automated Compliant Data Flow and Integrated QA Workflows</h1>
+
+            <div class="player">
+                <video id="demoVideo"
+                       src="https://res.cloudinary.com/dqiggfeuq/video/upload/v1790355286/Connector_Plus_Demo_Marketing_2_mlbor3.mp4"
+                       playsinline controls preload="metadata">
+                    Your browser doesn't support embedded video.
+                </video>
+                <button class="thumb" id="thumb" type="button" aria-label="Play the 90-second demo with sound">
+                    <video id="previewClip"
+                           src="https://res.cloudinary.com/dqiggfeuq/video/upload/so_5,eo_10,q_auto/v1790355286/Connector_Plus_Demo_Marketing_2_mlbor3.mp4"
+                           poster="https://res.cloudinary.com/dqiggfeuq/video/upload/so_5/v1790355286/Connector_Plus_Demo_Marketing_2_mlbor3.jpg"
+                           autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
+                    <span class="thumb-overlay">
+                        <span class="play-circle"><svg viewBox="0 0 24 24"><polygon points="5,3 21,12 5,21"/></svg></span>
+                        <span class="thumb-label">Play Demo With Sound</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== NEXT STEP ===================== -->
+    <section class="next-step">
+        <div class="next-card">
+            <h2>Ready to Integrate Your Own Instruments?</h2>
+            <p>Talk with our team about your instruments, your systems of record, and your data integrity requirements.</p>
+            <div class="cta-row">
+                <a href="https://phizzle.com/request-demo" class="btn-primary" id="requestDemoBtn">Request a Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== END-OF-VIDEO POPUP ===================== -->
+    <div class="end-modal" id="endModal" role="dialog" aria-modal="true" aria-labelledby="endTitle" aria-hidden="true">
+        <div class="end-card">
+            <button type="button" class="end-close" id="endClose" aria-label="Close">&times;</button>
+            <h2 id="endTitle">Ready to Integrate Your Own Instruments?</h2>
+            <p>Talk with our team about your instruments, your systems of record, and your data integrity requirements.</p>
+            <a href="https://phizzle.com/request-demo" class="btn-primary" id="endDemoBtn">Request a Demo</a>
+        </div>
+    </div>
+
+    <!-- ===================== FOOTER (copyright + legal only) ===================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Phizzle. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-use.html">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const video = document.getElementById('demoVideo');
+        const PAGE = 'demo-video';
+
+        function track(name, params) {
+            if (typeof gtag === 'function') gtag('event', name, Object.assign({ page: PAGE }, params || {}));
+        }
+
+        /* The looping 5-second preview plays silently as the thumbnail.
+           Clicking it swaps in the full demo and starts it with sound. */
+        const thumb = document.getElementById('thumb');
+        const preview = document.getElementById('previewClip');
+        const pv = preview.play();
+        if (pv && pv.catch) pv.catch(() => {});
+
+        thumb.addEventListener('click', () => {
+            preview.pause();
+            thumb.classList.add('hidden');
+            video.classList.add('active');
+            video.muted = false;
+            video.play().catch(() => {});
+            track('demo_thumbnail_click');
+        });
+
+        /* Engagement tracking: start, 25/50/75%, complete */
+        let started = false;
+        const marks = { 25: false, 50: false, 75: false };
+        video.addEventListener('play', () => {
+            if (!started) { started = true; track('demo_video_start'); }
+        });
+        video.addEventListener('timeupdate', () => {
+            if (!video.duration) return;
+            const pct = (video.currentTime / video.duration) * 100;
+            [25, 50, 75].forEach(m => {
+                if (!marks[m] && pct >= m) { marks[m] = true; track('demo_video_progress', { percent: m }); }
+            });
+        });
+        video.addEventListener('ended', () => {
+            track('demo_video_complete');
+            openEndModal();
+        });
+
+        /* ---------- End-of-video popup ---------- */
+        const endModal = document.getElementById('endModal');
+        let lastFocus = null;
+        function openEndModal() {
+            if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+            lastFocus = document.activeElement;
+            endModal.classList.add('active');
+            endModal.setAttribute('aria-hidden', 'false');
+            document.getElementById('endDemoBtn').focus();
+            track('demo_popup_shown');
+        }
+        function closeEndModal() {
+            endModal.classList.remove('active');
+            endModal.setAttribute('aria-hidden', 'true');
+            if (lastFocus) lastFocus.focus();
+            track('demo_popup_closed');
+        }
+        document.getElementById('endClose').addEventListener('click', closeEndModal);
+        endModal.addEventListener('click', (e) => { if (e.target === endModal) closeEndModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && endModal.classList.contains('active')) closeEndModal(); });
+        document.getElementById('endDemoBtn').addEventListener('click', () => track('demo_request_click', { location: 'popup' }));
+
+        document.getElementById('requestDemoBtn').addEventListener('click', () => track('demo_request_click', { location: 'page' }));
+    </script>
+</body>
+</html>

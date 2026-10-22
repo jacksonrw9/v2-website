@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Test drive Phizzle's Connected Plant platform with our interactive sandbox. Experience remote air particle counter operation, electronic signatures, and LIMS integration firsthand.">
-    <title>Connected Plant Sandbox - Phizzle</title>
+    <meta name="description" content="Test drive Phizzle's Connected Plant™ platform with our interactive sandbox. Experience remote air particle counter operation, electronic signatures, and LIMS integration firsthand.">
+    <title>Connected Plant™ Sandbox - Phizzle</title>
 
     <!-- Favicon links -->
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
@@ -23,6 +23,15 @@
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
     <!-- End of HubSpot Embed Code -->
+
+    <!-- Configure HubSpot to ignore our custom forms -->
+    <script>
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', window.location.pathname]);
+
+    // Tell HubSpot to NOT track form submissions
+    window._hsq.push(['disableFormAutoCollect']);
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -133,8 +142,8 @@
 
         .dropdown a:hover {
             background-color: #f8fafc;
-            color: #4a90b8;
-            border-left-color: #4a90b8;
+            color: #436c79;
+            border-left-color: #436c79;
         }
 
         .dropdown-header {
@@ -149,7 +158,7 @@
         }
 
         .request-demo {
-            background: #d97706 !important;
+            background: #da5e26 !important;
             color: white !important;
             padding: 0.5rem 1rem !important;
             border-radius: 6px !important;
@@ -307,7 +316,7 @@
 
         .mobile-request-demo {
             display: block;
-            background: #d97706 !important;
+            background: #da5e26 !important;
             color: white !important;
             padding: 0.75rem 1rem !important;
             border-radius: 6px !important;
@@ -337,6 +346,8 @@
             width: 100%;
             height: auto;
             margin-bottom: 3rem;
+            position:relative;
+            left:-12px;
         }
 
         .main-content {
@@ -369,13 +380,13 @@
         .hero-content h2 {
             font-size: 1.5rem;
             font-weight: 500;
-            color: #4a90b8;
+            color: #436c79;
             margin-bottom: 1.5rem;
             line-height: 1.3;
         }
 
         .hero-sidebar {
-            background: #e2e8f0;
+            background: #e1ebee;
             padding: 2rem;
             border-radius: 20px;
             border: 2px solid #cbd5e1;
@@ -425,7 +436,7 @@
 
         input:focus {
             outline: none;
-            border-color: #4a90b8;
+            border-color: #436c79;
         }
 
         .checkbox-group {
@@ -450,7 +461,7 @@
         }
 
         .privacy-link {
-            color: #4a90b8;
+            color: #436c79;
             text-decoration: none;
         }
 
@@ -459,7 +470,7 @@
         }
 
         .submit-btn {
-            background: #4a90b8;
+            background: #436c79;
             color: #ffffff;
             padding: 0.75rem 1.5rem;
             border: none;
@@ -472,7 +483,7 @@
         }
 
         .submit-btn:hover {
-            background: #3a7ba8;
+            background: #30444d;
         }
 
         /* Footer Section */
@@ -581,13 +592,13 @@
 
         .email-input:focus {
             outline: none;
-            border-color: #4a90b8;
+            border-color: #436c79;
         }
 
         .email-submit {
             width: 100%;
             padding: 0.75rem 1.25rem;
-            background: #4a90b8;
+            background: #436c79;
             color: #ffffff;
             border: none;
             border-radius: 6px;
@@ -599,7 +610,7 @@
         }
 
         .email-submit:hover {
-            background: #3a7ba8;
+            background: #30444d;
         }
 
         .social-links {
@@ -628,8 +639,8 @@
         }
 
         .social-link.linkedin {
-            border-color: #0077b5;
-            color: #0077b5;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.linkedin:hover {
@@ -638,8 +649,8 @@
         }
 
         .social-link.facebook {
-            border-color: #1877f2;
-            color: #1877f2;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.facebook:hover {
@@ -648,8 +659,8 @@
         }
 
         .social-link.youtube {
-            border-color: #ff0000;
-            color: #ff0000;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.youtube:hover {
@@ -692,216 +703,256 @@
         }
 
         /* Enhanced Navigation with Progressive Breakpoints */
-
+        
         /* Container padding adjustment for smaller screens */
         @media (max-width: 1600px) {
             .nav-container {
                 padding: 0 1.5rem;
             }
         }
-        
+
         /* Progressive scaling from large to medium screens */
         @media (max-width: 1500px) and (min-width: 1351px) {
             .nav-links {
                 gap: 2rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.9rem;
             }
         }
-        
+
         @media (max-width: 1350px) and (min-width: 1301px) {
             .nav-links {
                 gap: 1.8rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.9rem;
                 letter-spacing: 0.4px;
             }
-        
+
             .request-demo {
                 padding: 0.45rem 0.9rem !important;
                 font-size: 0.75rem !important;
             }
         }
-        
+
         @media (max-width: 1300px) and (min-width: 1201px) {
             .nav-links {
                 gap: 1.6rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.87rem;
                 letter-spacing: 0.35px;
             }
-        
+
             .request-demo {
                 padding: 0.42rem 0.85rem !important;
                 font-size: 0.72rem !important;
             }
         }
-        
+
         @media (max-width: 1200px) and (min-width: 1101px) {
             .nav-links {
                 gap: 1.4rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.84rem;
                 letter-spacing: 0.3px;
             }
-        
+
             .request-demo {
                 padding: 0.4rem 0.8rem !important;
                 font-size: 0.7rem !important;
             }
-        
+
             .logo {
                 font-size: 1.9rem;
             }
-        
+
             .logo img {
                 height: 30px;
             }
         }
-        
+
         @media (max-width: 1100px) and (min-width: 1026px) {
             .nav-links {
                 gap: 1.2rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.8rem;
                 letter-spacing: 0.2px;
                 padding: 0.4rem 0;
             }
-        
+
             .request-demo {
                 padding: 0.35rem 0.7rem !important;
                 font-size: 0.65rem !important;
                 letter-spacing: 0.2px !important;
             }
-        
+
             .logo {
                 font-size: 1.8rem;
             }
-        
+
             .logo img {
                 height: 28px;
             }
-        
+
             .dropdown {
                 min-width: 200px;
                 padding: 0.7rem 0;
             }
-        
+
             .dropdown a {
                 padding: 0.5rem 1rem;
                 font-size: 0.8rem;
             }
         }
-        
+
         /* Switch to mobile menu */
         @media (max-width: 1025px) {
             .nav-links {
                 display: none;
             }
-        
+
             .mobile-menu-toggle {
                 display: block;
             }
-        
+
             .logo {
                 font-size: 1.6rem;
             }
-        
+
             .logo img {
                 height: 24px;
             }
-        
+
+            /* Hero section adjustments on tablet */
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Footer adjustments */
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
             }
-        
+
             .footer-brand {
                 grid-column: 1 / -1;
             }
-        
+
             .email-signup {
                 grid-column: 1 / -1;
                 margin-top: 2rem;
             }
-        
-            .hero-section, .benefit-pair {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        
-            .connection-feature {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
         }
-        
+
+        /* Mobile Responsive Design (768px and below) */
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            /* Even smaller logo on mobile */
             .logo {
                 font-size: 1.4rem;
             }
-        
+
+            /* Sandbox content mobile adjustments */
+            .content-container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .hero-content h2 {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+
+            .hero-sidebar {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .hero-sidebar ul {
+                text-align: left;
+                margin: 1.5rem auto;
+                max-width: 400px;
+            }
+
+            .hero-sidebar h3 {
+                text-align: center;
+            }
+
+            .sandbox-form {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            /* Footer mobile */
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-        
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
             }
-        
-            .hero-content h1 {
-                font-size: 2rem;
-                text-align: center;
+
+            .footer-bottom-links {
+                gap: 1rem;
             }
-        
-            .hero-content p {
-                text-align: center;
-            }
-        
-            .hero-content {
-                text-align: center;
-            }
-        
-            .connection-header h2, .benefits-header h2 {
-                font-size: 1.8rem;
-            }
-        
+
+            /* Social links mobile sizing */
             .social-link {
                 width: 44px;
                 height: 44px;
                 font-size: 1.2rem;
             }
         }
-        
+
+        /* Very small mobile (480px and below) */
         @media (max-width: 480px) {
             .nav-container {
                 padding: 0 1rem;
             }
-        
+
             .content-container {
-                padding: 0 1rem;
+                padding: 0 0.5rem;
             }
-        
+
             .hero-content h1 {
                 font-size: 1.8rem;
             }
-        
-            .connection-header h2, .benefits-header h2 {
-                font-size: 1.6rem;
+
+            .hero-content h2 {
+                font-size: 1.2rem;
             }
+
+            .hero-sidebar {
+                padding: 1rem;
+            }
+
+            .hero-sidebar h3 {
+                font-size: 1rem;
+            }
+        }
+
+        .grecaptcha-badge {
+            visibility: hidden;
         }
     </style>
 </head>
@@ -927,10 +978,9 @@
                 <li>
                     <a href="connected-plant.html">Solutions ▼</a>
                     <ul class="dropdown">
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </li>
                 <li>
@@ -939,16 +989,16 @@
                         <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
+                        <li><a href="water-utilities.html">Water &amp; Utilities</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="connected-plant-sandbox.html">Resources ▼</a>
+                    <a href="blog.html">Resources ▼</a>
                     <ul class="dropdown">
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1000,10 +1050,9 @@
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <ul class="mobile-dropdown" id="solutions-dropdown">
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1015,6 +1064,7 @@
                         <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
+                        <li><a href="water-utilities.html">Water &amp; Utilities</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1027,7 +1077,6 @@
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1064,9 +1113,9 @@
             <!-- Hero Section -->
             <section class="hero-section">
                 <div class="hero-content">
-                    <h1>Phizzle Connected Plant Sandbox</h1>
+                    <h1>Phizzle Connected Plant™ Sandbox</h1>
                     <h2>Test Drive Our End-to-End Solution on Your Laptop:</h2>
-                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757081548/connected-plant-computer_v4lsos.png" alt="Connected Plant Computer" class="hero-image">
+                    <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757081548/connected-plant-computer_v4lsos.png" alt="Connected Plant™ Computer" class="hero-image">
                 </div>
                 <div class="hero-sidebar">
                     <p>Try the platform that helped a top-3 global pharma manufacturer eliminate over 80% of air particle counter related failure reports and save an average of ~ $4,800 per instrument annually in labor costs across 3 production sites and 310 instruments.</p>
@@ -1080,7 +1129,7 @@
                     <h3>Simply enter your information below and our technical team will contact you with more information:</h3>
                     
                     <!-- Updated form with HubSpot integration -->
-                    <form class="sandbox-form" id="sandbox-form">
+                    <form class="sandbox-form" id="sandbox-form" data-hsforms-ignore="true" data-hs-cf-bound="true">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -1089,6 +1138,21 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" placeholder="Work email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" placeholder="Company name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jobtitle">Job Title</label>
+                            <input type="text" id="jobtitle" name="jobtitle" placeholder="Job title" required>
                         </div>
                         
                         <div class="checkbox-group">
@@ -1118,7 +1182,7 @@
                     <h3>
                         <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 28px; width: auto;">
                     </h3>
-                    <p>Welcome to the Intersection of <br>Science and IT</p>
+                    <p>At the Intersection of <br>Science and IT</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/phizzle/posts/?feedView=all" class="social-link linkedin">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -1141,10 +1205,9 @@
                 <div class="footer-section">
                     <h4>Solutions</h4>
                     <ul>
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </div>
                 
@@ -1155,7 +1218,6 @@
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </div>
                 
@@ -1172,17 +1234,23 @@
                 <div class="footer-section">
                     <div class="email-signup">
                         <h5>Stay Updated</h5>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
-                        <form class="email-form" id="newsletter-form">
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Phizzle news and insights, straight to your inbox.</p>
+                        <form class="email-form" id="newsletter-form" method="post" action="/.netlify/functions/lead-relay" data-hsforms-ignore="true" data-hs-cf-bound="true">
+                            <input type="hidden" name="formType" value="newsletter">
                             <input type="email" class="email-input" name="email" placeholder="Enter your email" required>
                             <button type="submit" class="email-submit">Subscribe</button>
                         </form>
+                        <p style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; line-height: 1.4;">
+                            This site is protected by reCAPTCHA and the Google 
+                            <a href="https://policies.google.com/privacy" style="color: #94a3b8; text-decoration: underline;">Privacy Policy</a> and 
+                            <a href="https://policies.google.com/terms" style="color: #94a3b8; text-decoration: underline;">Terms of Service</a> apply.
+                        </p>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Phizzle. All rights reserved.</p>
+                <p>&copy; 2026 Phizzle. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-use.html">Terms of Use</a>
@@ -1242,108 +1310,73 @@
         // HubSpot Form Integration for Sandbox Form
         document.getElementById('sandbox-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
             const name = e.target.querySelector('input[name="name"]').value;
             const email = e.target.querySelector('input[name="email"]').value;
+            const phone = e.target.querySelector('input[name="phone"]').value;
+            const company = e.target.querySelector('input[name="company"]').value;
+            const jobtitle = e.target.querySelector('input[name="jobtitle"]').value;
             const marketing = e.target.querySelector('input[name="marketing"]').checked;
             const submitBtn = e.target.querySelector('button[type="submit"]');
             
-            // Disable button during submission
             submitBtn.textContent = 'Submitting...';
             submitBtn.disabled = true;
             
-            // Submit to HubSpot
-            fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fields: [
-                        {
-                            name: "firstname",
-                            value: name.split(' ')[0]
-                        },
-                        {
-                            name: "lastname", 
-                            value: name.split(' ').slice(1).join(' ') || ''
-                        },
-                        {
-                            name: "email",
-                            value: email
-                        },
-                        {
-                            name: "hs_lead_status",
-                            value: "NEW"
-                        },
-                        {
-                            name: "lifecyclestage",
-                            value: "lead"
-                        }
-                    ],
-                    context: {
-                        pageUri: window.location.href,
-                        pageName: "Connected Plant Sandbox"
-                    }
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                submitBtn.textContent = 'Thank You!';
-                e.target.reset();
-                setTimeout(() => {
-                    submitBtn.textContent = 'Start My Test Drive';
-                    submitBtn.disabled = false;
-                }, 3000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.textContent = 'Error - Try Again';
-                submitBtn.disabled = false;
+            // Get reCAPTCHA token
+            grecaptcha.enterprise.ready(function() {
+                grecaptcha.enterprise.execute('6Le6W1osAAAAAEySdjeFfrJffcwvyfL2ph1Dsxyf', {action: 'submit'}).then(function(token) {
+                    
+                    // Submit to Netlify function
+                    fetch('/.netlify/functions/submit-form', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            recaptchaToken: token,
+                            formData: {
+                                formId: '26112bd5-11ed-44b1-b3e7-952de8507e89',
+                                fields: [
+                                    { name: "firstname", value: name.split(' ')[0] },
+                                    { name: "lastname", value: name.split(' ').slice(1).join(' ') || '' },
+                                    { name: "email", value: email },
+                                    { name: "phone", value: phone },
+                                    { name: "company", value: company },
+                                    { name: "jobtitle", value: jobtitle },
+                                    { name: "hs_lead_status", value: "NEW" },
+                                    { name: "lifecyclestage", value: "lead" }
+                                ],
+                                context: {
+                                    pageUri: window.location.href,
+                                    pageName: "Connected Plant™ Sandbox"
+                                }
+                            }
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        submitBtn.textContent = 'Thank You!';
+                        e.target.reset();
+                        setTimeout(() => {
+                            submitBtn.textContent = 'Start My Test Drive';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        submitBtn.textContent = 'Error - Try Again';
+                        submitBtn.disabled = false;
+                    });
+                });
             });
         });
 
-        // HubSpot Form Integration for Newsletter Form  
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = e.target.querySelector('input[name="email"]').value;
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            
-            // Disable button during submission
-            submitBtn.textContent = 'Subscribing...';
-            submitBtn.disabled = true;
-            
-            // Submit to HubSpot
-            fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fields: [
-                        {
-                            name: "email",
-                            value: email
-                        }
-                    ]
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                submitBtn.textContent = 'Subscribed!';
-                e.target.reset();
-                setTimeout(() => {
-                    submitBtn.textContent = 'Subscribe';
-                    submitBtn.disabled = false;
-                }, 2000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.textContent = 'Error - Try Again';
-                submitBtn.disabled = false;
-            });
-        });
+        // Load reCAPTCHA
+        const script = document.createElement('script');
+        script.src = 'https://www.google.com/recaptcha/enterprise.js?render=6Le6W1osAAAAAEySdjeFfrJffcwvyfL2ph1Dsxyf';
+        document.head.appendChild(script);
+        
+        // Footer newsletter sign-up: handled by /newsletter.js (loaded below)
     </script>
+    <script src="/newsletter.js" defer></script>
 </body>
 </html>

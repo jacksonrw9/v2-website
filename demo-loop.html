@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Video</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background: #000;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    video {
+      max-width: 100%;
+      max-height: 100vh;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <video
+    src="https://res.cloudinary.com/dqiggfeuq/video/upload/v1780880349/Demo-VIdeo_Loop_without-Slides_2_qzfk7p.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+    controls>
+    Your browser does not support the video tag.
+  </video>
+</body>
+</html>

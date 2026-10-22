@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // iPhone/iPad zoom in when a box with text under 16px is tapped. This stops that
+        // auto-zoom on iOS only (iOS still lets people pinch to zoom).
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+            document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0');
+        }
+    </script>
+    <!-- Conference-only page: keep it out of search results -->
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Open connections early to the servers the page needs (faster on slow Wi-Fi) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" fetchpriority="high">
+    <meta name="description" content="Connect with Phizzle to learn how our Connected Plant™ platform and Instrument Connectors can transform your manufacturing operations.">
+    <title>Get in Touch - Phizzle</title>
+
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/dqiggfeuq/image/upload/v1758738434/Favicon_Phizzle-P_2_mmbtf4.png">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-41FB3KKW2T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-41FB3KKW2T');
+    </script>
+
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
+    <!-- End of HubSpot Embed Code -->
+    
+    <!-- Configure HubSpot to ignore our custom forms -->
+    <script>
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', window.location.pathname]);
+    window._hsq.push(['disableFormAutoCollect']);
+    </script>
+    
+    <!-- Font loads without holding up the page; system font shows until Inter arrives -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+            /* Footer stays at the bottom of the window, even on the short Thanks screen */
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > main {
+            flex: 1 0 auto;
+        }
+
+        body > footer {
+            flex-shrink: 0;
+        }
+
+        textarea {
+            font-family: inherit;
+        }
+
+        /* Navigation */
+        nav {
+            background: #30444D;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Dropdown Styles */
+
+        /* Mobile Menu */
+
+        /* Main Content */
+        .main-content {
+            background: #e8edf1;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+        }
+
+        .content-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+
+
+
+        /* Lead Form */
+        .lead-form {
+            background: #ffffff;
+            padding: 1.75rem 2.25rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #4b5563;
+            margin-bottom: 0.4rem;
+        }
+
+        .optional-tag {
+            font-weight: 400;
+            color: #6b7280;
+        }
+
+        /* When one label in a pair wraps to two lines on a phone, keep both inputs level */
+        .form-row.label-pair .form-group label {
+            min-height: 1.4em;
+        }
+
+        /* Better: line the pair up row by row, so a wrapped label only takes extra space when it actually wraps */
+        @supports (grid-template-rows: subgrid) {
+            .form-row.label-pair {
+                grid-template-rows: auto auto auto;
+                row-gap: 0;
+            }
+            .form-row.label-pair .form-group {
+                display: grid;
+                grid-row: span 3;
+                grid-template-rows: subgrid;
+            }
+            .form-row.label-pair .form-group label {
+                min-height: 0;
+                align-self: end;
+            }
+        }
+
+        .form-group input,
+.form-group select,
+.form-group textarea {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1f2937;
+            background: #ffffff;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+            border-color: #d1d5db;
+        }
+
+        .form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+            outline: none;
+            border-color: #9ca3af;
+            box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.12);
+        }
+
+        /* Dropdown text matches the hint text; "Select one" shows in grey like a hint */
+        .form-group select {
+            font-size: 0.9rem;
+        }
+
+        .form-group select.is-empty {
+            color: #9ca3af;
+        }
+
+        .form-group select option {
+            color: #1f2937;
+        }
+
+        /* Text box under the buying-process dropdown, shown only when "Other" is picked */
+        .stage-other {
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .form-group:has(#projectStage option[value="Other"]:checked) .stage-other,
+        .stage-other.show {
+            display: block;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%236b7280' stroke-width='2' viewBox='0 0 24 24'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Hint text inside boxes matches the size of the labels. (What people type stays
+           16px, which stops iPhones zooming in when a box is tapped.) */
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+
+        /* Message box: always tall enough for two full lines, so text and the hint never get cut off */
+        .form-group textarea {
+            height: auto;
+            min-height: calc(2.8em + 1.2rem + 3px);
+            line-height: 1.4;
+            padding: 0.6rem 0.8rem;
+            resize: vertical;
+            overflow-y: auto;
+        }
+
+        /* Fields in a pair already get their spacing from the row */
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        /* Timeline / Range Slider */
+
+        /* Solutions checkbox group (visually distinct from privacy checkboxes) */
+
+        /* Heading at the top of the form card */
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.25;
+            text-align: center;
+            margin: 0 0 1.25rem;
+        }
+
+        @media (max-width: 480px) {
+            .form-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.9rem;
+            }
+        }
+
+        /* Consent text */
+        .consent-line,
+        .consent-note {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .consent-line {
+            margin-top: 0.75rem;
+        }
+
+        .consent-note {
+            margin: -0.5rem 0 0.25rem 1.85rem;
+        }
+
+        .consent-line a {
+            color: #436c79;
+            text-decoration: underline;
+        }
+
+        /* Privacy Checkboxes */
+        .checkbox-group {
+            margin: 0.75rem 0 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Larger opt-in checkbox, easy to tap on a phone */
+        .checkbox-item input[type="checkbox"] {
+            flex: 0 0 auto;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin: 0.05rem 0 0;
+            min-height: auto;
+            accent-color: #1e293b;
+            cursor: pointer;
+        }
+
+        .checkbox-item {
+            gap: 0.6rem;
+        }
+
+        .checkbox-item label {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        /* Privacy note, shown once "I agree" is checked */
+        .consent-reveal {
+            display: none;
+        }
+
+        .consent-reveal.open {
+            display: block;
+            animation: consentIn 0.3s ease-out;
+        }
+
+        @keyframes consentIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .consent-reveal.open { animation: none; }
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: #1e293b;
+            color: white;
+            padding: 0.875rem 3rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1.25rem auto 0;
+            min-height: 48px;
+            display: block;
+            width: auto;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #0f172a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #ffffff;
+            padding: 4rem 4rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-icon {
+            width: 72px;
+            height: 72px;
+            background: #fff7f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: #da5e26;
+        }
+
+        .success-message h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .success-message p {
+            font-size: 1.05rem;
+            color: #6b7280;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .success-message {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .success-message h2 {
+                font-size: 1.4rem;
+            }
+
+            .success-message p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.25rem 0;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-bottom {
+            border-top: none;
+            padding-top: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: inline-block;
+            padding: 0.6rem 0;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #94a3b8;
+        }
+
+        /* Enhanced Navigation with Progressive Breakpoints */
+        @media (max-width: 1600px) {
+            .nav-container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 1101px) {
+
+            .logo { font-size: 1.9rem; }
+            .logo img { height: 30px; }
+        }
+
+        @media (max-width: 1100px) and (min-width: 1026px) {
+
+            .logo { font-size: 1.8rem; }
+            .logo img { height: 28px; }
+
+        }
+
+        @media (max-width: 1025px) {
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .logo img {
+                height: 24px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                height: 28px;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Tablets: keep the contact fields in pairs */
+            .form-row.name-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .main-content {
+                padding-top: 2.5rem;
+                padding-bottom: 4rem;
+            }
+
+            .lead-form {
+                padding: 1.5rem;
+            }
+
+            .content-container {
+                padding: 0 1rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-bottom-links {
+                gap: 1rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 1.25rem;
+                padding-bottom: 2rem;
+            }
+
+
+
+            /* Compact form so Submit shows on the first screen */
+            nav {
+                padding: 0.6rem 0;
+            }
+
+            .logo img {
+                height: 24px !important;
+            }
+
+            /* Slim white card on phones so it stands out from the background */
+            .lead-form {
+                padding: 1rem 0.875rem;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            }
+
+            .form-row {
+                gap: 0.7rem 0.75rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.7rem;
+            }
+
+            .form-group label {
+                margin-bottom: 0.3rem;
+                font-size: 0.875rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.65rem 0.8rem;
+            }
+
+            .form-group textarea {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .checkbox-group {
+                margin: 0.75rem 0 0.5rem;
+            }
+
+            .checkbox-item {
+                margin-bottom: 0.5rem;
+                align-items: center;
+            }
+
+            .checkbox-item input[type="checkbox"] {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin: 0;
+            }
+
+            .checkbox-item label {
+                font-size: 0.9rem;
+                padding: 0.35rem 0;
+            }
+
+            .consent-note {
+                margin-left: 2.1rem;
+            }
+
+            .submit-btn {
+                margin-top: 1rem;
+                width: 100%;
+            }
+
+            .content-container {
+                padding: 0 0.625rem;
+            }
+        }
+
+        /* Phones: one field per line */
+        @media (max-width: 560px) {
+            .form-row.name-row,
+            .form-row.label-pair {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                row-gap: 0.7rem;
+            }
+
+            .form-row.label-pair .form-group {
+                display: block;
+                grid-row: auto;
+            }
+
+            .form-row.label-pair .form-group label {
+                min-height: 0;
+                display: block;
+            }
+        }
+
+        /* Inline message under Work Email when a personal address is entered */
+        .field-error {
+            display: none;
+            margin-top: 0.4rem;
+            color: #b91c1c;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+        .field-error.show { display: block; }
+        .form-group input.input-error,
+.form-group input.input-error:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+        }
+
+        .form-error {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: 8px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .form-error a {
+            color: #991b1b;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <span class="logo"><img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" fetchpriority="high" decoding="async" style="height: 32px; width: auto; display: block;"></span>
+
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-container">
+            <!-- Lead Capture Form -->
+            <!-- Third copy of every lead, on phizzle.com's own hosting (Netlify Forms). Never shown;
+                 Netlify reads it when the site deploys. -->
+            <form name="lead-fallback" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+                <input type="hidden" name="form-name" value="lead-fallback">
+                <input name="bot-field">
+                <input name="firstname"><input name="lastname"><input name="email"><input name="phone">
+                <input name="project_stage"><textarea name="message"></textarea><input name="marketing_opt_in">
+                <input name="page"><input name="submission_id">
+            </form>
+
+            <!-- method/action only matter if the page's code isn't running yet (or at all): the browser then
+                 sends the form to phizzle.com's relay, which forwards it to HubSpot, the Sheet and Netlify. -->
+            <form class="lead-form" id="lead-form" method="post" action="/.netlify/functions/lead-relay" data-hsforms-ignore="true" data-hs-cf-bound="true">
+                <h1 class="form-title">Get in Touch</h1>
+
+                <!-- Contact Information Section -->
+
+                <div class="form-row name-row">
+                    <div class="form-group">
+                        <label for="firstName">First name*</label>
+                        <input type="text" id="firstName" name="firstName" autocomplete="given-name" autocapitalize="words" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last name*</label>
+                        <input type="text" id="lastName" name="lastName" autocomplete="family-name" autocapitalize="words" required>
+                    </div>
+                </div>
+
+                <div class="form-row name-row label-pair">
+                    <div class="form-group">
+                        <label for="email">Work email*</label>
+                        <input type="email" id="email" name="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required>
+                        <p class="field-error" id="emailError" role="alert">Personal email addresses aren't accepted. Please use your work email.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Mobile number <span class="optional-tag">(optional)</span></label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" inputmode="tel" autocomplete="tel">
+                    </div>
+                </div>
+
+                <!-- Project Inquiry Section -->
+
+                <div class="form-group">
+                    <label for="projectStage">Where are you in the buying process? <span class="optional-tag">(optional)</span></label>
+                    <select id="projectStage" name="projectStage">
+                        <option value="">Select one</option>
+                        <option value="Comparing vendors">Comparing vendors</option>
+                        <option value="Building business case">Building business case</option>
+                        <option value="Evaluation">Evaluation</option>
+                        <option value="Ready to purchase">Ready to purchase</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="stage-other">
+                        <label for="projectStageOther" class="visually-hidden">Other buying stage</label>
+                        <input type="text" id="projectStageOther" name="projectStageOther" maxlength="200" placeholder="Tell us where you are">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Any other context you'd like to share?</label>
+                    <textarea id="message" name="message" rows="2" placeholder="Optional: questions or project details"></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="communications" name="communications" value="yes">
+                        <label for="communications">I agree to receive email communications from Phizzle.</label>
+                    </div>
+                </div>
+
+                <!-- Unsubscribe note appears once "I agree" is checked -->
+                <div class="consent-reveal" id="consentReveal">
+                    <p class="consent-note">You can unsubscribe at any time.</p>
+                </div>
+
+                <!-- Purpose of collecting the information + privacy policy (always shown) -->
+                <p class="consent-line">We store and use your information to respond to your request. See our <a href="privacy-policy.html" target="_blank" rel="noopener">privacy policy</a>.</p>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <p class="form-error" id="formError" role="alert"></p>
+            </form>
+
+            <!-- Success Message (shown after successful submission) -->
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h2>Thanks for reaching out!</h2>
+                <p>A member of the Phizzle team will reach out in the next 24 hours.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Phizzle. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy policy</a>
+                    <a href="terms-of-use.html" target="_blank" rel="noopener">Terms of use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ================= Form settings =================
+        // HubSpot account and forms the website submits to
+        const HUBSPOT_PORTAL_ID = '8070371';
+        const LEAD_FORM_ID = '24515c9a-c453-4d31-af1a-7c28742d5b44';
+        // Paste the HubSpot form ID for newsletter sign-ups here. Until it is set,
+        // newsletter sign-ups are still saved to the Google Form backup.
+        const NEWSLETTER_FORM_ID = '';
+        // Google Form "Phizzle Website Form Backup". Its responses feed the
+        // "Phizzle Website Form Submissions (Backup)" Google Sheet.
+        const BACKUP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfLG4keTbK34yn_DIKp8uD4hLb34dcjYQXczEptqzNLSg0GDw/formResponse';
+        const BACKUP_FORM_FIELDS = {
+            form: 'entry.516863202',
+            hubspot: 'entry.1581862950',
+            firstname: 'entry.1323290399',
+            lastname: 'entry.953833378',
+            email: 'entry.2060112685',
+            company: 'entry.102944365',
+            jobtitle: 'entry.1516065853',
+            phone: 'entry.580761313',
+            project_stage: 'entry.1342341611',
+            solutions_of_interest: 'entry.1650683835',
+            message: 'entry.1502109527',
+            marketing_opt_in: 'entry.2012500422',
+            page: 'entry.1260589540',
+            id: 'entry.392642089'
+        };
+        const SALES_EMAIL = 'sales@phizzle.com';
+        // ==================================================
+
+        function newSubmissionId() {
+            return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+        }
+
+        // HubSpot tracking cookie, so a submission links to the visitor's earlier page views
+        function getHubspotCookie() {
+            const match = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
+            return match ? decodeURIComponent(match[1]) : undefined;
+        }
+
+        async function fetchWithTimeout(url, options, ms) {
+            const controller = new AbortController();
+            const timer = setTimeout(() => controller.abort(), ms || 15000);
+            try {
+                return await fetch(url, Object.assign({}, options, { signal: controller.signal }));
+            } finally {
+                clearTimeout(timer);
+            }
+        }
+
+        // Sends a copy of the submission to the backup Google Form (which feeds the Google Sheet).
+        // Google doesn't let the page read the reply, so this returns true when the
+        // request was sent without a network error.
+        async function saveToBackup(payload, timeoutMs) {
+            const fields = payload.fields || {};
+            const values = Object.assign({}, fields, {
+                form: payload.form,
+                hubspot: payload.hubspot || '',
+                page: payload.page,
+                id: payload.id
+            });
+            const body = new URLSearchParams();
+            Object.keys(BACKUP_FORM_FIELDS).forEach(key => {
+                if (values[key] !== undefined && values[key] !== '') {
+                    body.append(BACKUP_FORM_FIELDS[key], String(values[key]).slice(0, 5000));
+                }
+            });
+            try {
+                await fetchWithTimeout(BACKUP_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    keepalive: true,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body.toString()
+                }, timeoutMs || 15000);
+                return true;
+            } catch (error) {
+                console.error('Backup save failed:', error);
+                return false;
+            }
+        }
+
+        // Sends the submission straight to HubSpot. Returns { ok, detail } with HubSpot's actual answer.
+        async function sendToHubSpot(formId, fields, pageName) {
+            if (!formId) return { ok: false, detail: 'not sent: no HubSpot form ID set' };
+            const context = { pageUri: window.location.href, pageName: pageName };
+            const hutk = getHubspotCookie();
+            if (hutk) context.hutk = hutk;
+            try {
+                const response = await fetchWithTimeout(
+                    'https://api.hsforms.com/submissions/v3/integration/submit/' + HUBSPOT_PORTAL_ID + '/' + formId,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ fields: fields, context: context })
+                    },
+                    15000
+                );
+                const data = await response.json().catch(() => ({}));
+                if (response.ok) return { ok: true, detail: 'accepted' };
+                const reasons = (data.errors || []).map(err => err.message).join(' | ');
+                return { ok: false, detail: 'rejected (' + response.status + '): ' + (reasons || data.message || 'no details') };
+            } catch (error) {
+                return { ok: false, detail: 'could not reach HubSpot: ' + error };
+            }
+        }
+
+        // Sends to HubSpot, then saves a backup copy (with HubSpot's answer) to the Google Form.
+        // Last resort: hand the lead to phizzle.com's own server (Netlify function), which sends it
+        // on to HubSpot and/or the backup. Used only when the visitor's network blocks HubSpot or
+        // Google. Returns the relay's answer, or null if the relay isn't available (e.g. on a preview).
+        const RELAY_URL = '/.netlify/functions/lead-relay';
+        async function sendToRelay(payload) {
+            try {
+                const response = await fetchWithTimeout(RELAY_URL, {
+                    method: 'POST',
+                    keepalive: true,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }, 20000);
+                if (!response.ok) return null;
+                return await response.json();
+            } catch (error) {
+                console.error('Relay failed:', error);
+                return null;
+            }
+        }
+
+        // Stores every lead with Netlify Forms on phizzle.com (third copy, independent of Google and
+        // HubSpot). Netlify's reply can be read, so the page knows for sure whether this saved.
+        async function saveToNetlifyForms(id, fieldMap) {
+            const body = new URLSearchParams({
+                'form-name': 'lead-fallback',
+                firstname: fieldMap.firstname || '',
+                lastname: fieldMap.lastname || '',
+                email: fieldMap.email || '',
+                phone: fieldMap.phone || '',
+                project_stage: fieldMap.project_stage || '',
+                message: (fieldMap.message || '').slice(0, 5000),
+                marketing_opt_in: fieldMap.marketing_opt_in || 'false',
+                page: window.location.href,
+                submission_id: id
+            });
+            try {
+                const response = await fetchWithTimeout('/', {
+                    method: 'POST',
+                    keepalive: true,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body.toString()
+                }, 15000);
+                return response.ok;
+            } catch (error) {
+                console.error('Netlify Forms save failed:', error);
+                return false;
+            }
+        }
+
+        async function submitEverywhere(formName, formId, fields, pageName) {
+            const id = newSubmissionId();
+            const fieldMap = {};
+            fields.forEach(f => { fieldMap[f.name] = f.value; });
+
+            // 1. Save two copies first, at the same time, so the lead's details are kept even if
+            //    the visitor closes the page or loses signal while HubSpot is answering:
+            //    - the backup Google Sheet, marked "pending" until HubSpot's answer is known
+            //    - Netlify Forms on phizzle.com (doesn't depend on Google or HubSpot)
+            const saves = await Promise.all([
+                saveToBackup({
+                    id: id,
+                    form: formName,
+                    hubspot: 'pending',
+                    fields: fieldMap,
+                    page: window.location.href
+                }, 6000),
+                formId ? saveToNetlifyForms(id, fieldMap) : Promise.resolve(false)
+            ]);
+            const backupSaved = saves[0];
+            const netlifySaved = saves[1];
+
+            // 2. Send to HubSpot.
+            let hubspot = await sendToHubSpot(formId, fields, pageName);
+            if (!hubspot.ok) console.error('HubSpot did not accept the submission:', hubspot.detail);
+
+            // 2b. If HubSpot or Google couldn't be reached from this network, send the lead
+            //     through phizzle.com instead, which forwards it from Netlify's servers.
+            const hubspotUnreachable = !hubspot.ok && /could not reach HubSpot/.test(hubspot.detail);
+            let backupViaRelay = false;
+            if (formId && (!backupSaved || hubspotUnreachable)) {
+                const relay = await sendToRelay({
+                    id: id,
+                    form: formName,
+                    fields: fields,
+                    page: window.location.href,
+                    pageName: pageName,
+                    hutk: getHubspotCookie(),
+                    hubspotAlreadyAccepted: hubspot.ok,
+                    needBackup: !backupSaved
+                });
+                if (relay) {
+                    if (hubspotUnreachable && relay.hubspot) hubspot = relay.hubspot;
+                    backupViaRelay = !backupSaved && !!relay.backup;
+                }
+            }
+
+            // 3. Record HubSpot's answer against the same submission ID. The alert script
+            //    copies it onto the backup row and sends the alert email. If this never
+            //    arrives, the script emails a "not confirmed" alert after 5 minutes.
+            saveToBackup({
+                id: id,
+                form: formName + ' (result)',
+                hubspot: hubspot.ok ? 'accepted' : hubspot.detail,
+                fields: {},
+                page: window.location.href
+            });
+
+            // Only HubSpot can confirm a submission (Google doesn't let the page read the
+            // backup form's reply), so only a confirmed HubSpot submission counts as received.
+            // Exception: a form with no HubSpot form ID yet relies on the backup alone.
+            // If HubSpot didn't confirm it but Netlify Forms saved it, the lead is safely captured,
+            // so show "Thanks" - unless HubSpot was refusing the details themselves (a 4xx rejection,
+            // e.g. a blocked email domain), in which case the visitor needs to fix them.
+            const hubspotRefused = !hubspot.ok && /rejected \(4\d\d\)/.test(hubspot.detail);
+
+            const received = formId
+                ? (hubspot.ok || (netlifySaved && !hubspotRefused))
+                : (backupSaved || backupViaRelay);
+            // Google Analytics: one form_submit event per lead HubSpot confirmed.
+            // Mark form_submit as a key event in GA (Admin > Events) to count leads.
+            if (received && typeof gtag === 'function') {
+                gtag('event', 'form_submit', {
+                    form_id: 'lead-form',
+                    form_name: formName,
+                    page_path: window.location.pathname,
+                    event_tag: new URLSearchParams(window.location.search).get('event') || '(none)',
+                    hubspot_accepted: hubspot.ok,
+                    backup_saved: backupSaved
+                });
+            }
+            return { received: received, hubspot: hubspot, backupSaved: backupSaved || backupViaRelay, netlifySaved: netlifySaved };
+        }
+
+        // Show the privacy note once "I agree" is checked
+        (function() {
+            const agree = document.getElementById('communications');
+            const reveal = document.getElementById('consentReveal');
+            function sync() { reveal.classList.toggle('open', agree.checked); }
+            agree.addEventListener('change', sync);
+            sync(); // in case the browser restored the checkbox state
+        })();
+
+        // Lead capture form submission
+        // ================= Work email only =================
+        // Blocks personal email providers (Gmail, Yahoo, Hotmail, AOL and similar).
+        // Consumer email services: blocked with any country ending (gmail.com, yahoo.com.br, hotmail.co.uk...).
+        // Only names that no real company uses for its own work email belong here.
+        const PERSONAL_EMAIL_PROVIDERS = [
+            'gmail', 'googlemail', 'yahoo', 'ymail', 'rocketmail', 'hotmail', 'outlook',
+            'live', 'msn', 'aol', 'icloud', 'protonmail', 'gmx', 'yandex', 'zohomail',
+            'tutanota', 'qq', '163', '126'
+        ];
+        // Exact personal domains. Internet providers are listed by their consumer domain only,
+        // so employees of AT&T (att.com), Verizon (verizon.com), Comcast, Cox, Charter, IG Group
+        // (ig.com), bol.com and others can still use their work email.
+        const PERSONAL_EMAIL_DOMAINS = [
+            'me.com', 'mac.com', 'aim.com', 'mail.com', 'mail.ru', 'proton.me', 'pm.me', 'hey.com',
+            'fastmail.com', 'att.net', 'sbcglobal.net', 'bellsouth.net', 'verizon.net', 'comcast.net',
+            'cox.net', 'charter.net', 'earthlink.net', 'juno.com', 'naver.com',
+            'uol.com.br', 'bol.com.br', 'terra.com.br', 'ig.com.br'
+        ];
+        const PERSONAL_EMAIL_PATTERN = new RegExp(
+            '@(?:(?:' + PERSONAL_EMAIL_PROVIDERS.join('|') + ')\\.[a-z]{2,3}(?:\\.[a-z]{2})?|' +
+            PERSONAL_EMAIL_DOMAINS.map(d => d.replace(/\./g, '\\.')).join('|') + ')$', 'i');
+        const PERSONAL_EMAIL_MESSAGE = 'Please use your work email address. Personal email addresses (like Gmail, Yahoo, Hotmail or AOL) aren\'t accepted.';
+
+        function isPersonalEmail(value) {
+            return PERSONAL_EMAIL_PATTERN.test(String(value || '').trim());
+        }
+
+        // ================= Phones: open scrolled to the form =================
+        // On phones the page starts with the form card at the top of the screen
+        // (the logo bar sits just above, a small scroll up).
+        (function () {
+            if (!window.matchMedia('(max-width: 768px)').matches || location.hash) return;
+            if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+            function toForm() {
+                const card = document.getElementById('lead-form');
+                if (!card || window.scrollY > 0 && window.__userScrolled) return;
+                const top = card.getBoundingClientRect().top + window.scrollY - 8;
+                window.scrollTo(0, Math.max(0, top));
+            }
+            window.addEventListener('touchstart', function () { window.__userScrolled = true; }, { once: true, passive: true });
+            window.addEventListener('wheel', function () { window.__userScrolled = true; }, { once: true, passive: true });
+            requestAnimationFrame(toForm);
+            window.addEventListener('load', toForm);
+        })();
+
+        // ================= Field alerts =================
+        // Shows a message under each field that stops the form from submitting:
+        // a missing entry, an invalid email, or a personal email.
+        (function () {
+            const form = document.getElementById('lead-form');
+            if (!form) return;
+            const workEmail = form.querySelector('input[name="email"]');
+            const summary = document.getElementById('formError');
+
+            const MESSAGES = {
+                firstName: 'Please enter your first name.',
+                lastName: 'Please enter your last name.'
+            };
+
+            function emailMessage() {
+                if (workEmail.validity.valueMissing) return 'Please enter your work email.';
+                if (isPersonalEmail(workEmail.value)) return 'Personal email addresses aren\'t accepted. Please use your work email.';
+                if (workEmail.validity.typeMismatch) return 'Please enter a valid email address, like name@company.com.';
+                return '';
+            }
+
+            // Finds (or creates) the message line for a field
+            function errorFor(input) {
+                if (input === workEmail) return document.getElementById('emailError');
+                const group = input.type === 'radio' ? input.closest('.form-group') : input.parentElement;
+                let el = group.querySelector(':scope > .field-error');
+                if (!el) {
+                    el = document.createElement('p');
+                    el.className = 'field-error';
+                    el.setAttribute('role', 'alert');
+                    group.appendChild(el);
+                }
+                return el;
+            }
+
+            function show(input, text) {
+                const el = errorFor(input);
+                el.textContent = text;
+                el.classList.toggle('show', !!text);
+                if (input.type !== 'radio') input.classList.toggle('input-error', !!text);
+            }
+
+            function messageFor(input) {
+                if (input === workEmail) return emailMessage();
+                return input.validity.valid ? '' : (MESSAGES[input.name] || 'Please fill in this field.');
+            }
+
+            // Grey "Select one" until an answer is picked
+            const stage = form.querySelector('select[name="projectStage"]');
+            if (stage) {
+                const stageOther = form.querySelector('.stage-other');
+                const stageOtherInput = form.querySelector('input[name="projectStageOther"]');
+                const syncStage = () => {
+                    stage.classList.toggle('is-empty', !stage.value);
+                    if (stageOther) stageOther.classList.toggle('show', stage.value === 'Other');
+                };
+                stage.addEventListener('change', () => {
+                    syncStage();
+                    if (stage.value === 'Other' && stageOtherInput) stageOtherInput.focus();
+                });
+                syncStage();
+            }
+
+            // Personal email check while typing
+            function checkEmail() {
+                const personal = isPersonalEmail(workEmail.value);
+                workEmail.setCustomValidity(personal ? PERSONAL_EMAIL_MESSAGE : '');
+                const shown = errorFor(workEmail).classList.contains('show');
+                if (personal || shown) show(workEmail, emailMessage());
+            }
+            workEmail.addEventListener('input', checkEmail);
+            workEmail.addEventListener('change', checkEmail);
+            checkEmail();
+
+            // When Submit is blocked, the browser flags each problem field: show our message instead of its bubble
+            let focusQueued = false;
+            form.addEventListener('invalid', function (e) {
+                e.preventDefault();
+                show(e.target, messageFor(e.target));
+                if (!focusQueued) {
+                    focusQueued = true;
+                    setTimeout(function () {
+                        focusQueued = false;
+                        const first = form.querySelector(':invalid');
+                        if (first) {
+                            first.focus({ preventScroll: true });
+                            first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        if (summary) {
+                            summary.textContent = 'Please fix the highlighted fields above.';
+                            summary.style.display = 'block';
+                        }
+                    }, 0);
+                }
+            }, true);
+
+            // Clear a field's message once it's fixed, and the summary once everything is
+            form.addEventListener('input', clearFixed);
+            form.addEventListener('change', clearFixed);
+            function clearFixed(e) {
+                const input = e.target;
+                if (!input.name) return;
+                if (input !== workEmail && errorFor(input).classList.contains('show') && input.validity.valid) show(input, '');
+                if (summary && !form.querySelector(':invalid')) summary.style.display = 'none';
+            }
+        })();
+        // ====================================================
+
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const form = e.target;
+            const errorBox = document.getElementById('formError');
+            errorBox.style.display = 'none';
+
+            // Work email only: stop here if a personal email got past the browser check
+            const workEmailInput = form.querySelector('input[name="email"]');
+            if (isPersonalEmail(workEmailInput.value)) {
+                workEmailInput.setCustomValidity(PERSONAL_EMAIL_MESSAGE);
+                workEmailInput.reportValidity();
+                return;
+            }
+
+            const firstName = form.querySelector('input[name="firstName"]').value;
+            const lastName = form.querySelector('input[name="lastName"]').value;
+            const email = form.querySelector('input[name="email"]').value;
+            const phoneNumber = form.querySelector('input[name="phoneNumber"]').value;
+            const projectStage = form.querySelector('select[name="projectStage"]').value;
+            const stageOtherBox = form.querySelector('input[name="projectStageOther"]');
+            const stageOtherText = projectStage === 'Other' && stageOtherBox ? stageOtherBox.value.trim() : '';
+            // The "Other" text goes into the message, so HubSpot's project stage only ever gets one of the listed options
+            const typedMessage = form.querySelector('textarea[name="message"]').value;
+            const message = stageOtherText
+                ? 'Buying process (other): ' + stageOtherText + (typedMessage.trim() ? '\n\n' + typedMessage : '')
+                : typedMessage;
+            const communications = form.querySelector('input[name="communications"]').checked;
+
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            const fields = [
+                { name: "firstname", value: firstName },
+                { name: "lastname", value: lastName },
+                { name: "email", value: email },
+                { name: "hs_lead_status", value: "NEW" },
+                { name: "lifecyclestage", value: "lead" }
+            ];
+
+            if (phoneNumber.trim()) fields.push({ name: "phone", value: phoneNumber.trim() });
+            if (projectStage) fields.push({ name: "project_stage", value: projectStage });
+            if (message) fields.push({ name: "message", value: message });
+            if (communications) fields.push({ name: "marketing_opt_in", value: "true" });
+
+            function showSuccess() {
+                // Hide form, hide page header subtext, show success message, scroll to top of content
+                form.style.display = 'none';
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('active');
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                form.reset();
+            }
+
+            submitEverywhere('Get in Touch', LEAD_FORM_ID, fields, 'Lead Capture')
+                .then(outcome => {
+                    if (outcome.received) {
+                        showSuccess();
+                        return;
+                    }
+                    // HubSpot didn't confirm it: say so honestly, and keep what they typed.
+                    // (A backup copy was still sent, and the team gets an alert email.)
+                    errorBox.innerHTML = 'Sorry, we couldn\'t confirm your request went through. Please try again, or email us at ' +
+                        '<a href="mailto:' + SALES_EMAIL + '">' + SALES_EMAIL + '</a>.';
+                    errorBox.style.display = 'block';
+                    submitBtn.textContent = 'Submit';
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>

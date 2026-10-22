@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Phizzle's Edge Manager provides distributed systems architecture for scientific instruments, enabling smart connectors, remote operation, and continuous data capture in regulated environments.">
+    <meta name="description" content="Phizzle's Edge Manager provides distributed systems architecture for scientific instruments, enabling pre-built connectors, remote operation, and continuous data capture in regulated environments.">
     <title>Edge Manager - Phizzle</title>
 
     <!-- Favicon links -->
@@ -23,6 +23,15 @@
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js-na2.hs-scripts.com/8070371.js"></script>
     <!-- End of HubSpot Embed Code -->
+
+    <!-- Configure HubSpot to ignore our custom forms -->
+    <script>
+    window._hsq = window._hsq || [];
+    window._hsq.push(['setPath', window.location.pathname]);
+
+    // Tell HubSpot to NOT track form submissions
+    window._hsq.push(['disableFormAutoCollect']);
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -133,12 +142,12 @@
 
         .dropdown a:hover {
             background-color: #f8fafc;
-            color: #4a90b8;
-            border-left-color: #4a90b8;
+            color: #436c79;
+            border-left-color: #436c79;
         }
 
         .request-demo {
-            background: #d97706 !important;
+            background: #da5e26 !important;
             color: white !important;
             padding: 0.5rem 1rem !important;
             border-radius: 6px !important;
@@ -296,7 +305,7 @@
 
         .mobile-request-demo {
             display: block;
-            background: #d97706 !important;
+            background: #da5e26 !important;
             color: white !important;
             padding: 0.75rem 1rem !important;
             border-radius: 6px !important;
@@ -378,7 +387,7 @@
 
         /* Capabilities Section */
         .capabilities-section {
-            background: #e2e8f0;
+            background: #e1ebee;
             padding: 4rem 0;
             margin: 5rem -2rem;
             border-radius: 20px;
@@ -414,7 +423,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #e2e8f0;
-            border-left: 4px solid #4a90b8;
+            border-left: 4px solid #436c79;
         }
 
         .capability-item h3 {
@@ -452,7 +461,7 @@
 
         .cta-btn {
             display: inline-block;
-            background: #d97706;
+            background: #da5e26;
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 6px;
@@ -575,13 +584,13 @@
 
         .email-input:focus {
             outline: none;
-            border-color: #4a90b8;
+            border-color: #436c79;
         }
 
         .email-submit {
             width: 100%;
             padding: 0.75rem 1.25rem;
-            background: #4a90b8;
+            background: #436c79;
             color: #ffffff;
             border: none;
             border-radius: 6px;
@@ -593,7 +602,7 @@
         }
 
         .email-submit:hover {
-            background: #3a7ba8;
+            background: #30444d;
         }
 
         .social-links {
@@ -622,8 +631,8 @@
         }
 
         .social-link.linkedin {
-            border-color: #0077b5;
-            color: #0077b5;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.linkedin:hover {
@@ -632,8 +641,8 @@
         }
 
         .social-link.facebook {
-            border-color: #1877f2;
-            color: #1877f2;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.facebook:hover {
@@ -642,8 +651,8 @@
         }
 
         .social-link.youtube {
-            border-color: #ff0000;
-            color: #ff0000;
+            border-color: #ffffff;
+            color: #ffffff;
         }
 
         .social-link.youtube:hover {
@@ -686,217 +695,271 @@
         }
 
         /* Enhanced Navigation with Progressive Breakpoints */
-
+        
         /* Container padding adjustment for smaller screens */
         @media (max-width: 1600px) {
             .nav-container {
                 padding: 0 1.5rem;
             }
         }
-        
+
         /* Progressive scaling from large to medium screens */
         @media (max-width: 1500px) and (min-width: 1351px) {
             .nav-links {
                 gap: 2rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.9rem;
             }
         }
-        
+
         @media (max-width: 1350px) and (min-width: 1301px) {
             .nav-links {
                 gap: 1.8rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.9rem;
                 letter-spacing: 0.4px;
             }
-        
+
             .request-demo {
                 padding: 0.45rem 0.9rem !important;
                 font-size: 0.75rem !important;
             }
         }
-        
+
         @media (max-width: 1300px) and (min-width: 1201px) {
             .nav-links {
                 gap: 1.6rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.87rem;
                 letter-spacing: 0.35px;
             }
-        
+
             .request-demo {
                 padding: 0.42rem 0.85rem !important;
                 font-size: 0.72rem !important;
             }
         }
-        
+
         @media (max-width: 1200px) and (min-width: 1101px) {
             .nav-links {
                 gap: 1.4rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.84rem;
                 letter-spacing: 0.3px;
             }
-        
+
             .request-demo {
                 padding: 0.4rem 0.8rem !important;
                 font-size: 0.7rem !important;
             }
-        
+
             .logo {
                 font-size: 1.9rem;
             }
-        
+
             .logo img {
                 height: 30px;
             }
         }
-        
+
         @media (max-width: 1100px) and (min-width: 1026px) {
             .nav-links {
                 gap: 1.2rem;
             }
-        
+
             .nav-links a {
                 font-size: 0.8rem;
                 letter-spacing: 0.2px;
                 padding: 0.4rem 0;
             }
-        
+
             .request-demo {
                 padding: 0.35rem 0.7rem !important;
                 font-size: 0.65rem !important;
                 letter-spacing: 0.2px !important;
             }
-        
+
             .logo {
                 font-size: 1.8rem;
             }
-        
+
             .logo img {
                 height: 28px;
             }
-        
+
             .dropdown {
                 min-width: 200px;
                 padding: 0.7rem 0;
             }
-        
+
             .dropdown a {
                 padding: 0.5rem 1rem;
                 font-size: 0.8rem;
             }
         }
-        
+
         /* Switch to mobile menu */
         @media (max-width: 1025px) {
             .nav-links {
                 display: none;
             }
-        
+
             .mobile-menu-toggle {
                 display: block;
             }
-        
+
             .logo {
                 font-size: 1.6rem;
             }
-        
+
             .logo img {
                 height: 24px;
             }
-        
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-visual {
+                height: 250px;
+            }
+
+            .capabilities-container {
+                padding: 0 1rem;
+            }
+            
+            .capabilities-header h2 {
+                font-size: 2rem;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
             }
-        
+
             .footer-brand {
                 grid-column: 1 / -1;
             }
-        
+
             .email-signup {
                 grid-column: 1 / -1;
                 margin-top: 2rem;
             }
-        
-            .hero-section, .benefit-pair {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        }
+
+        /* Mobile Responsive Design (768px and below) */
+        @media (max-width: 768px) {
+            .logo img {
+                height: 28px;
             }
-        
-            .connection-feature {
-                grid-template-columns: 1fr;
+
+            .hero-content {
                 text-align: center;
             }
-        }
-        
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 1.4rem;
+
+            .hero-content h1 {
+                font-size: 1.8rem;
             }
-        
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .hero-visual {
+                height: 200px;
+            }
+
+            .capabilities-section {
+                margin: 3rem -1rem;
+                padding: 3rem 0;
+                border-radius: 12px;
+            }
+
+            .capabilities-header h2 {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            .capability-item {
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+            .capability-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .cta-section {
+                margin: 3rem -1rem 0;
+                padding: 2rem 0;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-        
+
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
                 gap: 1rem;
             }
-        
-            .hero-content h1 {
-                font-size: 2rem;
-                text-align: center;
+
+            .footer-bottom-links {
+                gap: 1rem;
             }
-        
-            .hero-content p {
-                text-align: center;
-            }
-        
-            .hero-content {
-                text-align: center;
-            }
-        
-            .connection-header h2, .benefits-header h2 {
-                font-size: 1.8rem;
-            }
-        
+
             .social-link {
                 width: 44px;
                 height: 44px;
                 font-size: 1.2rem;
             }
         }
-        
+
+        /* Very small mobile (480px and below) */
         @media (max-width: 480px) {
             .nav-container {
                 padding: 0 1rem;
             }
-        
+
             .content-container {
                 padding: 0 1rem;
             }
-        
+
             .hero-content h1 {
-                font-size: 1.8rem;
-            }
-        
-            .connection-header h2, .benefits-header h2 {
                 font-size: 1.6rem;
             }
+
+            .capabilities-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .capability-item h3 {
+                font-size: 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.3rem;
+            }
         }
+
     </style>
 </head>
 <body>
@@ -921,10 +984,9 @@
                 <li>
                     <a href="connected-plant.html">Solutions ▼</a>
                     <ul class="dropdown">
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </li>
                 <li>
@@ -933,16 +995,16 @@
                         <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
+                        <li><a href="water-utilities.html">Water &amp; Utilities</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="connected-plant-sandbox.html">Resources ▼</a>
+                    <a href="blog.html">Resources ▼</a>
                     <ul class="dropdown">
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </li>
                 <li>
@@ -994,10 +1056,9 @@
                         <span class="dropdown-arrow">▼</span>
                     </a>
                     <ul class="mobile-dropdown" id="solutions-dropdown">
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1009,6 +1070,7 @@
                         <li><a href="pharma-manufacturing.html">Pharma Manufacturing</a></li>
                         <li><a href="aerospace-manufacturing.html">Aerospace Manufacturing</a></li>
                         <li><a href="food-production.html">Food Production</a></li>
+                        <li><a href="water-utilities.html">Water &amp; Utilities</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1021,7 +1083,6 @@
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </li>
                 <li>
@@ -1059,7 +1120,7 @@
             <section class="hero-section">
                 <div class="hero-content">
                     <h1>Edge Manager</h1>
-                    <p>The distributed systems architecture that seamlessly connects existing scientific instruments to our infrastructure, enabling continuous data capture, remote operation, and paperless GMP workflows — all from one unified interface.</p>
+                    <p>The distributed systems architecture that seamlessly connects existing scientific instruments to our infrastructure, enabling continuous data capture, remote operation, and paperless GxP workflows — all from one unified interface.</p>
                 </div>
                 <div class="hero-visual">
                     <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757525226/Your_paragraph_text_5_-cropped_rbb0vh.svg" alt="Edge Manager Architecture Diagram">
@@ -1075,8 +1136,8 @@
                     
                     <div class="capabilities-grid">
                         <div class="capability-item">
-                            <h3>Smart Connectors</h3>
-                            <p>Unlike basic industry connectors, our smart connectors act as comprehensive device agents that handle everything behind the scenes — automatically communicating in native protocols of each instrument and handling all of the idiosyncrasies, so all users have to do is connect instruments with our 5-step process to enable continuous data capture, automated data formatting, and remote operation.</p>
+                            <h3>Pre-Built Connectors</h3>
+                            <p>Unlike basic industry connectors, our pre-built connectors act as comprehensive device agents that handle everything behind the scenes — automatically communicating in native protocols of each instrument and handling all of the idiosyncrasies, so all users have to do is connect instruments with our 5-step process to enable continuous data capture, automated data formatting, and remote operation.</p>
                         </div>
                         
                         <div class="capability-item">
@@ -1100,7 +1161,7 @@
             <!-- CTA Section -->
             <section class="cta-section">
                 <div class="cta-container">
-                    <h2>See Our Solution Live</h2>
+                    <h2 style="font-size: 1.5rem;">See Our Solution Live</h2>
                     <a href="request-demo.html" class="cta-btn">Request a Demo</a>
                 </div>
             </section>
@@ -1115,7 +1176,7 @@
                     <h3>
                         <img src="https://res.cloudinary.com/dqiggfeuq/image/upload/v1757701267/__Phizzle-Logo-WHITE-01_5_hpfhss.svg" alt="Phizzle Logo" style="height: 28px; width: auto;">
                     </h3>
-                    <p>Welcome to the Intersection of <br>Science and IT</p>
+                    <p>At the Intersection of <br>Science and IT</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/company/phizzle/posts/?feedView=all" class="social-link linkedin">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -1138,10 +1199,9 @@
                 <div class="footer-section">
                     <h4>Solutions</h4>
                     <ul>
-                        <li><a href="connected-plant.html">Connected Plant</a></li>
-                        <li><a href="edge-puck.html">Edge Puck</a></li>
-                        <li><a href="phizzle-lens.html">Phizzle Lens</a></li>
-                        <li><a href="edge-manager.html">Edge Manager</a></li>
+                        <li><a href="connected-plant.html">Connected Plant™</a></li>
+                        <li><a href="edge-puck.html">Edge Puck™</a></li>
+                        <li><a href="instrument-connectors.html">Instrument Connectors</a></li>
                     </ul>
                 </div>
                 
@@ -1152,7 +1212,6 @@
                         <li><a href="videos.html">Videos</a></li>
                         <li><a href="webinars.html">Webinars</a></li>
                         <li><a href="apc-case-study.html">Case Study</a></li>
-                        <li><a href="connected-plant-sandbox.html">Connected Plant Sandbox</a></li>
                     </ul>
                 </div>
                 
@@ -1169,17 +1228,21 @@
                 <div class="footer-section">
                     <div class="email-signup">
                         <h5>Stay Updated</h5>
-                        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Join our newsletter to get the latest updates</p>
-                        <form class="email-form" id="newsletter-form">
+                        <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.75rem;">Phizzle news and insights, straight to your inbox.</p>
+                        <form class="email-form" id="newsletter-form" method="post" action="/.netlify/functions/lead-relay" data-hsforms-ignore="true" data-hs-cf-bound="true">
+                            <input type="hidden" name="formType" value="newsletter">
                             <input type="email" class="email-input" name="email" placeholder="Enter your email" required>
                             <button type="submit" class="email-submit">Subscribe</button>
                         </form>
+                        <p style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; line-height: 1.4;">
+                            Unsubscribe anytime. See our <a href="privacy-policy.html" style="color: #94a3b8; text-decoration: underline;">privacy policy</a>.
+                        </p>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Phizzle. All rights reserved.</p>
+                <p>&copy; 2026 Phizzle. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-use.html">Terms of Use</a>
@@ -1208,7 +1271,6 @@
             const dropdown = document.getElementById(dropdownId);
             const arrow = event.target.querySelector('.dropdown-arrow');
             
-            // Close all other dropdowns
             const allDropdowns = document.querySelectorAll('.mobile-dropdown');
             const allArrows = document.querySelectorAll('.dropdown-arrow');
             
@@ -1224,59 +1286,19 @@
                 }
             });
             
-            // Toggle current dropdown
             dropdown.classList.toggle('active');
             arrow.classList.toggle('rotated');
         }
 
-        // Close mobile menu when pressing escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeMobileMenu();
             }
         });
 
-        // HubSpot Form Integration
-        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = e.target.querySelector('input[name="email"]').value;
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            
-            // Disable button during submission
-            submitBtn.textContent = 'Subscribing...';
-            submitBtn.disabled = true;
-            
-            // Submit to HubSpot
-            fetch('https://api.hsforms.com/submissions/v3/integration/submit/8070371/5efde115-8a41-4e38-8176-4b121279ff42', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    fields: [
-                        {
-                            name: "email",
-                            value: email
-                        }
-                    ]
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                submitBtn.textContent = 'Subscribed!';
-                e.target.reset();
-                setTimeout(() => {
-                    submitBtn.textContent = 'Subscribe';
-                    submitBtn.disabled = false;
-                }, 2000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                submitBtn.textContent = 'Error - Try Again';
-                submitBtn.disabled = false;
-            });
-        });
+        
+        // Footer newsletter sign-up: handled by /newsletter.js (loaded below)
     </script>
+    <script src="/newsletter.js" defer></script>
 </body>
 </html>
